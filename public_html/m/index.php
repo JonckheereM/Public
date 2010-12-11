@@ -3,7 +3,7 @@
 date_default_timezone_set('Europe/Berlin');
 
 // set include path
-ini_set("include_path", ".:../library/");
+ini_set("include_path", ".:../../library/");
 
 // required classes
 require_once 'spoon/spoon.php';
@@ -42,5 +42,6 @@ $tpl->assign('password', $password);
 $tpl->assign('msgFault', $msgFault);
 
 // show the output
-$tpl->display('templates/index.tpl');
+$tpl->assign('content', $tpl->getContent('templates/index.tpl'));
+$tpl->display('templates/template.tpl');
 ?>
