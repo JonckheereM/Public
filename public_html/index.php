@@ -16,7 +16,6 @@
     //Content layout
     $tpl->assign('oNavHome', true);
 
-    
     // show the output
     $tpl->assign('content', $tpl->getContent('templates/index.tpl'));
     $tpl->display('templates/layout.tpl');

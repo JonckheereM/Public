@@ -14,7 +14,6 @@
     
     
     //Content layout
-    $tpl->assign('oNavDrinks', true);
     
     // show the output
     $tpl->assign('content', $tpl->getContent('templates/drinks.tpl'));

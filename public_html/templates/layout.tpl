@@ -8,27 +8,24 @@
 
         <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="css/screen.css" />
-
     </head>
     <body>
 
         <div id="header" class="fluid">
-            <div class="container">
-                <h1><a class="imgreplacement" href="index.php">Public</a></h1>
-                <ul id="navigation">
-                    <li {option:oNavHome}class="active"{/option:oNavHome}><a href="index.php">Home</a></li>
-                    <li {option:oNavPubs}class="active"{/option:oNavPubs}><a href="pubs.php">Pubs</a></li>
-                    <li {option:oNavDrinks}class="active"{/option:oNavDrinks}><a href="drinks.php">Drinks</a></li>
-                    <li {option:oNavPeople}class="active"{/option:oNavPeople}><a href="#">People</a></li>
-                </ul>
+      <div class="container">
+        <h1><a class="imgreplacement" href="index.php">Public</a></h1>
+        <ul id="navigation">
+          <li {option:oNavHome}class="active"{/option:oNavHome}><a href="index.php">Home</a></li>
+          <li {option:oNavPubs}class="active"{/option:oNavPubs}><a href="pubs.php">Pubs</a></li>
+        </ul>
 
-                <ul id="login">
-                    <li class="first"><a href="#">Login</a></li>
-                    <li><a href="#">Signup</a></li>
-                    <li><a href="#" class="imgreplacement">Login with Facebook</a></li>
-                </ul>
-            </div>
-        </div>
+        <ul id="login">
+          <li class="first"><a href="#">Login</a></li>
+          <li><a href="#">Signup</a></li>
+          <li><a href="#" class="imgreplacement">Login with Facebook</a></li>
+        </ul>
+      </div>
+    </div>
         
         {$content}
         

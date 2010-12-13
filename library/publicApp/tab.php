@@ -33,7 +33,6 @@ class Tab {
         $this->drink = new Drink($drink_id);
         $this->timestamp = $time;
     }
-
 }
 
 ?>

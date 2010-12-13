@@ -91,6 +91,30 @@ class Drink {
         return PublicApp::getDB()->getRecords('SELECT * FROM drinks order by name asc');
     }
 
+    /**
+     * Gets the recent drinkers of this drink.
+     *
+     * @return	array	All the drinks.
+     */
+    function getRecent() {
+        return PublicApp::getDB()->getRecords('SELECT tabs.timestamp, tabs.drink_id, pubs.pub_id, users.user_id, users.username, pubs.name as pubname FROM tabs
+                                                INNER JOIN checkins on tabs.checkin_id = checkins.checkin_id
+                                                INNER JOIN users on checkins.user_id = users.user_id
+                                                INNER JOIN pubs on checkins.pub_id = pubs.pub_id
+                                                WHERE tabs.drink_id = '.$this->drink_id.' order by tabs.timestamp desc');
+    }
+
+    /**
+     * Gets the top drinkers of this drink.
+     *
+     * @return	array	All the drinks.
+     */
+    function getTop() {
+        return PublicApp::getDB()->getRecords('SELECT users.user_id, users.username, count(users.user_id) as count FROM tabs
+                                                INNER JOIN checkins on tabs.checkin_id = checkins.checkin_id
+                                                INNER JOIN users on checkins.user_id = users.user_id
+                                                WHERE tabs.drink_id = '.$this->drink_id.' group by users.user_id asc LIMIT 5');
+    }
 }
 
 ?>

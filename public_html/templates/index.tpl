@@ -79,7 +79,77 @@
         </div>
         <div id="location">
             <h2>Your location</h2>
-            <img src="img/dev/map-location.png" alt="your location" width="360px" height="200px" />
+            <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+            <article>
+              <p>Finding your location: <span id="status">Locating...</span></p>
+            </article>
+
+            <script>
+                //location found
+                function success(position) {
+                    var s = document.querySelector('#status');
+                    if (s.className == 'success') {
+                        return;
+                    }
+                    s.innerHTML = "Found Location!";
+                    s.className = 'Success';
+
+                    var mapcanvas = document.createElement('div');
+                    mapcanvas.id = 'mapcanvas';
+                    mapcanvas.style.height = '200px';
+                    mapcanvas.style.width = '360px';
+
+                    document.querySelector('article').appendChild(mapcanvas);
+
+                    //Geolocation
+                    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    var myOptions = {
+                        zoom: 15,
+                        center: latlng,
+                        mapTypeControl: false,
+                        navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+
+                    var marker = new google.maps.Marker({
+                        position: latlng,
+                        map: map,
+                        title:"You are here!"
+                    });
+
+                    //Reverse Geocoding (Address Lookup)
+
+                    var geocoder = new google.maps.Geocoder();
+                    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    geocoder.geocode({'latLng': latlng}, function(results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+
+                                var location = document.createElement('div');
+                                location.innerHTML = "<p>Street address: " + results[0].formatted_address + "</p>";
+                                document.querySelector('article').appendChild(location);
+                            }
+                        } else {
+                            alert("Geocoder failed due to: " + status);
+                        }
+                    });
+
+                }
+                //error handling
+                function error(msg) {
+                    var s = document.querySelector('#status');
+                    s.innerHTML = typeof msg == 'string' ? msg : "failed";
+                    s.className = 'fail';
+                }
+
+                //get location
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(success, error, {enableHighAccuracy: true});
+                } else {
+                    error('not supported');
+                }
+            </script>
             <h2>Popular pubs in your neighbourhood</h2>
             <ol>
                 <li><a href="#">Backdoor</a></li>
