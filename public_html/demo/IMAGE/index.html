@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <title>IMAGE search</title>
+        <link rel="stylesheet" media="screen" href="css/reset.css">         
+    </head>
+    <body>
+        <script src="http://www.google.com/jsapi?key=ABQIAAAAjClSPIOxNBGxBX4-wq0z2RQdIpNK-FIIU0bQIEsmC2XAZxl40hRSuIEeLYEgih5Oae8K5Pewvdhqfg" type="text/javascript"></script>
+        <script type="text/javascript">
+
+            var imageQuery = "Karmeliet";
+            imageQuery +=  " beverage";
+
+            google.load('search', '1');
+            function searchComplete(searcher) {
+                if (searcher.results && searcher.results.length > 0) {
+                    var contentDiv = document.getElementById('beerImage');
+                    contentDiv.innerHTML = '';
+                    var results = searcher.results;
+                    for (var i = 0; i < 1; i++) {
+                        var result = results[i];
+                        var newImg = document.createElement('img');
+                        newImg.src = result.tbUrl;
+                        contentDiv.appendChild(newImg);
+                    }
+                }
+            }
+
+            function OnLoad() {
+                var imageSearch = new google.search.ImageSearch();
+                imageSearch.setRestriction(google.search.ImageSearch.RESTRICT_IMAGETYPE, google.search.ImageSearch.IMAGETYPE_PHOTO);
+                imageSearch.setSearchCompleteCallback(this, searchComplete, [imageSearch]);
+                imageSearch.execute(imageQuery);
+            }
+            google.setOnLoadCallback(OnLoad);			
+
+	</script>
+
+	<div id="beerImage">Loading...</div>
+	
+    </body>
+</html>

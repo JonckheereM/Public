@@ -132,6 +132,29 @@ class CheckIn {
         unset($this->tabs[$id]);
     }
 
+    /**
+     * Gets the checkins with a specific pub .
+     *
+     * @return	array	All the drinks.
+     */
+    public static function getCheckinsByPubId($id) {
+        return PublicApp::getDB()->getRecords('SELECT checkins.timestamp, users.user_id, users.username, pubs.pub_id, pubs.name as pubname FROM checkins
+                                                INNER JOIN users on checkins.user_id = users.user_id
+                                                INNER JOIN pubs on checkins.pub_id = pubs.pub_id
+                                                WHERE checkins.pub_id = '.$id.' order by checkins.timestamp desc');
+    }
+
+    /**
+     * Gets the top checkins with a specific pub.
+     *
+     * @return	array	All the drinks.
+     */
+    public static function getTopCheckinsByPubId($id) {
+        return PublicApp::getDB()->getRecords('SELECT users.user_id, users.username, count(users.user_id) as count FROM checkins
+                                                INNER JOIN users on checkins.user_id = users.user_id
+                                                WHERE checkins.pub_id = '.$id.' group by users.user_id asc LIMIT 5');
+    }
+
 }
 
 ?>

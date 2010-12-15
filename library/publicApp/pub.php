@@ -91,6 +91,27 @@ class Pub {
         return PublicApp::getDB()->delete('pubs', 'pub_id = ?', $this->pub_id);
     }
 
+    /**
+     * Gets the number of people who have checked in here.
+     *
+     * @return	array	All the drinks.
+     */
+    function getNumberPeople() {
+        $value = PublicApp::getDB()->getRecord('SELECT count(pub_id) as count FROM (SELECT DISTINCT user_id, pub_id FROM checkins
+                                                WHERE pub_id = '.$this->pub_id.' group by user_id) as counter');
+        return $value['count'];
+    }
+
+    /**
+     * Gets the number of checkins of this bar.
+     *
+     * @return	array	All the drinks.
+     */
+    function getNumberCheckins() {
+        $value = PublicApp::getDB()->getRecord('SELECT count(pub_id) as count FROM (SELECT pub_id FROM checkins
+                                                WHERE pub_id = '.$this->pub_id.' group by pub_id) as counter');
+        return $value['count'];
+    }
 }
 
 ?>
