@@ -11,7 +11,7 @@
 
 <div id="content" class="fluid">
     <div class="container">
-        <div id="recent-activity"
+        <div id="recent-activity">
              <h2>Recent activity</h2>
 
             {option:oRecent}
