@@ -88,7 +88,7 @@
         </div>
         <div id="list">
             <div class="pub">
-                <img src="img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
+                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
                 <h3><a href="#">Backdoor</a></h3>
                 <p>
                     <span class="people"><span class="number">16</span> people</span>
@@ -96,7 +96,7 @@
                 </p>
             </div>
             <div class="pub">
-                <img src="img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
+                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
                 <h3><a href="#">Backdoor</a></h3>
                 <p>
                     <span class="people"><span class="number">16</span> people</span>
@@ -104,7 +104,7 @@
                 </p>
             </div>
             <div class="pub">
-                <img src="img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
+                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
                 <h3><a href="#">Backdoor</a></h3>
                 <p>
                     <span class="people"><span class="number">16</span> people</span>
@@ -112,7 +112,7 @@
                 </p>
             </div>
             <div class="pub">
-                <img src="img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
+                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
                 <h3><a href="#">Backdoor</a></h3>
                 <p>
                     <span class="people"><span class="number">16</span> people</span>
@@ -120,7 +120,7 @@
                 </p>
             </div>
             <div class="pub">
-                <img src="img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
+                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
                 <h3><a href="#">Backdoor</a></h3>
                 <p>
                     <span class="people"><span class="number">16</span> people</span>
@@ -128,7 +128,7 @@
                 </p>
             </div>
             <div class="pub">
-                <img src="img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
+                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
                 <h3><a href="#">Backdoor</a></h3>
                 <p>
                     <span class="people"><span class="number">16</span> people</span>
@@ -136,7 +136,7 @@
                 </p>
             </div>
             <div class="pub">
-                <img src="img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
+                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
                 <h3><a href="#">Backdoor</a></h3>
                 <p>
                     <span class="people"><span class="number">16</span> people</span>
@@ -144,7 +144,7 @@
                 </p>
             </div>
             <div class="pub">
-                <img src="img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
+                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
                 <h3><a href="#">Backdoor</a></h3>
                 <p>
                     <span class="people"><span class="number">16</span> people</span>

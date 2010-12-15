@@ -6,8 +6,8 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 
-        <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="css/screen.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/reset.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css" />
     </head>
     <body>
 
@@ -15,8 +15,8 @@
       <div class="container">
         <h1><a class="imgreplacement" href="index.php">Public</a></h1>
         <ul id="navigation">
-          <li {option:oNavHome}class="active"{/option:oNavHome}><a href="index.php">Home</a></li>
-          <li {option:oNavPubs}class="active"{/option:oNavPubs}><a href="pubs.php">Pubs</a></li>
+          <li {option:oNavHome}class="active"{/option:oNavHome}><a href="/index.php">Home</a></li>
+          <li {option:oNavPubs}class="active"{/option:oNavPubs}><a href="/pubs.php">Pubs</a></li>
         </ul>
 
         <ul id="login">
