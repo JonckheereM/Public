@@ -18,7 +18,7 @@
             {iteration:iRecent}
             <div class="activity">
                 <img src="/img/thumbs/{$iRecent.username}.jpg" alt="avatar mmphs" width="32px" height="32px" />
-                <p><span class="person"><a href="userDetail.php?id={$iRecent.user_id}">{$iRecent.username}</a></span> just drank a <span class="drink"><a href="drinkDetail.php?id={$iRecent.pub_id}">{$name}</a></span> in <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}">{$iRecent.pubname}</a></span></p>
+                <p><span class="person"><a href="/user/{$iRecent.user_id}">{$iRecent.username}</a></span> just drank a <span class="drink"><a href="/drinks/{$iRecent.pub_id}">{$name}</a></span> in <span class="pub"><a href="/pubs/{$iRecent.pub_id}">{$iRecent.pubname}</a></span></p>
                 <p><span class="timespan">{$iRecent.timestamp}</span></p>
             </div>
             {/iteration:iRecent}
@@ -84,7 +84,7 @@
             <ol>
 
                 {iteration:iTopDrinkers}
-                <li><a href="userDetail.php?id={$iTopDrinkers.user_id}">{$iTopDrinkers.username}</a> <span>{$iTopDrinkers.count} drinks</span></li>
+                <li><a href="/users/{$iTopDrinkers.user_id}">{$iTopDrinkers.username}</a> <span>{$iTopDrinkers.count} drinks</span></li>
                 {/iteration:iTopDrinkers}
             </ol>
             {/option:oTopDrinkers}

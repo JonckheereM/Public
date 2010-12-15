@@ -13,10 +13,10 @@
 
         <div id="header" class="fluid">
       <div class="container">
-        <h1><a class="imgreplacement" href="index.php">Public</a></h1>
+        <h1><a class="imgreplacement" href="/">Public</a></h1>
         <ul id="navigation">
-          <li {option:oNavHome}class="active"{/option:oNavHome}><a href="/index.php">Home</a></li>
-          <li {option:oNavPubs}class="active"{/option:oNavPubs}><a href="/pubs.php">Pubs</a></li>
+          <li {option:oNavHome}class="active"{/option:oNavHome}><a href="/">Home</a></li>
+          <li {option:oNavPubs}class="active"{/option:oNavPubs}><a href="/pubs">Pubs</a></li>
         </ul>
 
         <ul id="login">
@@ -31,7 +31,7 @@
         
         <div id="footer" class="fluid">
             <div class="container">
-                <p>&copy; public &mdash; created by <a href="#">@mmphs</a>, <a href="#">@jonckheere_M</a>, <a href="#">@joenmaes</a> and a huge amount of alcohol</p>
+                <p>&copy; public &mdash; created by <a href="http://www.twitter.com/mmmphs">@mmmphs</a>, <a href="http://www.twitter.com/Jonckheere_M">@jonckheere_M</a>, <a href="http://www.twitter.com/joenmaes">@joenmaes</a> and a huge amount of alcohol</p>
             </div>
         </div>
 

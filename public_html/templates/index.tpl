@@ -3,7 +3,7 @@
     <div class="container">
         <div id="summary">
             <h2>Find out <em>where</em> and <em>what</em> your friends are drinking</h2>
-            <img src="img/dev/map-summary.png" alt="summary map" width="350px" height="230px" />
+            <img src="/img/dev/map-summary.png" alt="summary map" width="350px" height="230px" />
         </div>
 
         <div id="features">
@@ -37,43 +37,43 @@
         <div id="recent-activity">
             <h2>Recent activity</h2>
             <div class="activity">
-                <img src="img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
+                <img src="/img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
                 <p><span class="person"><a href="#">mmphs</a></span> just arrived at <span class="pub"><a href="#">Backdoor</a></span></p>
             </div>
             <div class="activity">
-                <img src="img/thumbs/joenmaes.jpg" alt="avatar joenmaes" width="32px" height="32px" />
+                <img src="/img/thumbs/joenmaes.jpg" alt="avatar joenmaes" width="32px" height="32px" />
                 <p><span class="person"><a href="#">joenmaes</a></span> just drank a <span class="drink"><a href="#">Duvel</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
             </div>
             <div class="activity">
-                <img src="img/thumbs/jonckheereM.jpg" alt="avatar jonckheereM" width="32px" height="32px" />
+                <img src="/img/thumbs/jonckheereM.jpg" alt="avatar jonckheereM" width="32px" height="32px" />
                 <p><span class="person"><a href="#">jonckheereM</a></span> just drank a <span class="drink"><a href="#">Malheur</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
             </div>
             <div class="activity">
-                <img src="img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
+                <img src="/img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
                 <p><span class="person"><a href="#">mmphs</a></span> just arrived at <span class="pub"><a href="#">Backdoor</a></span></p>
             </div>
             <div class="activity">
-                <img src="img/thumbs/joenmaes.jpg" alt="avatar joenmaes" width="32px" height="32px" />
+                <img src="/img/thumbs/joenmaes.jpg" alt="avatar joenmaes" width="32px" height="32px" />
                 <p><span class="person"><a href="#">joenmaes</a></span> just drank a <span class="drink"><a href="#">Duvel</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
             </div>
             <div class="activity">
-                <img src="img/thumbs/jonckheereM.jpg" alt="avatar jonckheereM" width="32px" height="32px" />
+                <img src="/img/thumbs/jonckheereM.jpg" alt="avatar jonckheereM" width="32px" height="32px" />
                 <p><span class="person"><a href="#">jonckheereM</a></span> just drank a <span class="drink"><a href="#">Malheur</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
             </div>
             <div class="activity">
-                <img src="img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
+                <img src="/img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
                 <p><span class="person"><a href="#">mmphs</a></span> just arrived at <span class="pub"><a href="#">Backdoor</a></span></p>
             </div>
             <div class="activity">
-                <img src="img/thumbs/joenmaes.jpg" alt="avatar joenmaes" width="32px" height="32px" />
+                <img src="/img/thumbs/joenmaes.jpg" alt="avatar joenmaes" width="32px" height="32px" />
                 <p><span class="person"><a href="#">joenmaes</a></span> just drank a <span class="drink"><a href="#">Duvel</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
             </div>
             <div class="activity">
-                <img src="img/thumbs/jonckheereM.jpg" alt="avatar jonckheereM" width="32px" height="32px" />
+                <img src="/img/thumbs/jonckheereM.jpg" alt="avatar jonckheereM" width="32px" height="32px" />
                 <p><span class="person"><a href="#">jonckheereM</a></span> just drank a <span class="drink"><a href="#">Malheur</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
             </div>
             <div class="activity">
-                <img src="img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
+                <img src="/img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
                 <p><span class="person"><a href="#">mmphs</a></span> just arrived at <span class="pub"><a href="#">Backdoor</a></span></p>
             </div>
         </div>
