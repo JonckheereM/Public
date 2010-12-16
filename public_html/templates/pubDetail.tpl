@@ -11,13 +11,13 @@
 
 <div id="content" class="fluid">
     <div class="container">
-        <div id="recent-activity">
+        <div id="recent-activity"
              <h2>Recent activity</h2>
             {option:oRecent}
             {iteration:iRecent}
             <div class="activity">
                 <img src="/img/thumbs/{$iRecent.username}.jpg" alt="avatar mmphs" width="32px" height="32px" />
-                <p><span class="person"><a href="/users/{$iRecent.user_id}">{$iRecent.username}</a></span> just arrived at <span class="pub"><a href="/pubs/{$iRecent.pub_id}">{$iRecent.pubname}</a></span></p>
+                <p><span class="person"><a href="users/{$iRecent.user_id}">{$iRecent.username}</a></span> just arrived at <span class="pub"><a href="pubs/{$iRecent.pub_id}">{$iRecent.pubname}</a></span></p>
                 <p><span class="timespan">{$iRecent.timestamp}</span></p>
             </div>
             {/iteration:iRecent} 
@@ -45,7 +45,7 @@
             <div id="pub-information">
                 <div id="basic">
                     <h3>{$name}</h3>
-                    <span class="city">Ghent</span>
+                    <span class="city">Unknown</span>
                 </div>
                 
                 <div>
@@ -77,7 +77,7 @@
                     document.querySelector('article').appendChild(mapcanvas);
 
                     //Geolocation
-                    var latlng = new google.maps.LatLng(longitude, latitude);
+                    var latlng = new google.maps.LatLng(latitude, longitude);
                     var myOptions = {
                         zoom: 15,
                         center: latlng,
@@ -91,6 +91,19 @@
                         position: latlng,
                         map: map,
                         title:"You are here!"
+                    });
+
+                    //Reverse Geocoding (Address Lookup)
+                    var geocoder = new google.maps.Geocoder();
+                    var latlng = new google.maps.LatLng(latitude, longitude);
+                    geocoder.geocode({'latLng': latlng}, function(results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                document.querySelector('.city').innerHTML = results[2].formatted_address;
+                            }
+                        } else {
+                            alert("Geocoder failed due to: " + status);
+                        }
                     });
                 </script>
             </div>

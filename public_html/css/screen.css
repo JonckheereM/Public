@@ -342,7 +342,7 @@ a.button {
 #content #list .pub h3 {
   float: left;
   padding-top: 5px;
-  margin-right: 100px;
+  width: 200px;
   font-size: 18px;
   color: #454545;
 }

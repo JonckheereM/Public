@@ -3,7 +3,7 @@
     <div class="container">
         <div id="summary">
             <h2>Find out <em>where</em> and <em>what</em> your friends are drinking</h2>
-            <img src="/img/dev/map-summary.png" alt="summary map" width="350px" height="230px" />
+            <img src="img/dev/map-summary.png" alt="summary map" width="350px" height="230px" />
         </div>
 
         <div id="features">
@@ -36,63 +36,46 @@
     <div class="container">
         <div id="recent-activity">
             <h2>Recent activity</h2>
+
+            {option:oRecent}
+            {iteration:iRecent}
             <div class="activity">
-                <img src="/img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
+                <img src="img/thumbs/{$iRecent.username}.jpg" alt="avatar {$iRecent.username}" width="32px" height="32px" />
+                {option:iRecent.drink_id}<p><span class="person"><a href="#">{$iRecent.username}</a></span> just drank a <span class="drink"><a href="drinkDetail.php?id={$iRecent.drink_id}">{$iRecent.drinkname}</a></span> in <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}">{$iRecent.pubname}</a></span></p>{/option:iRecent.drink_id}
+                {option:iRecent.checkin_id}<p><span class="person"><a href="#">mmphs</a></span> just arrived at <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}">Backdoor</a></span></p>{/option:iRecent.checkin_id}
+                <p><span class="timespan">{$iRecent.timestamp}</span></p>
+            </div>
+            {/iteration:iRecent}
+            {/option:oRecent}
+            {option:oNoRecent}
+            <p>No recent activities.</p>
+            {/option:oNoRecent}
+            <!--<div class="activity">
+                <img src="img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
                 <p><span class="person"><a href="#">mmphs</a></span> just arrived at <span class="pub"><a href="#">Backdoor</a></span></p>
             </div>
             <div class="activity">
-                <img src="/img/thumbs/joenmaes.jpg" alt="avatar joenmaes" width="32px" height="32px" />
+                <img src="img/thumbs/joenmaes.jpg" alt="avatar joenmaes" width="32px" height="32px" />
                 <p><span class="person"><a href="#">joenmaes</a></span> just drank a <span class="drink"><a href="#">Duvel</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>
-            <div class="activity">
-                <img src="/img/thumbs/jonckheereM.jpg" alt="avatar jonckheereM" width="32px" height="32px" />
-                <p><span class="person"><a href="#">jonckheereM</a></span> just drank a <span class="drink"><a href="#">Malheur</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>
-            <div class="activity">
-                <img src="/img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
-                <p><span class="person"><a href="#">mmphs</a></span> just arrived at <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>
-            <div class="activity">
-                <img src="/img/thumbs/joenmaes.jpg" alt="avatar joenmaes" width="32px" height="32px" />
-                <p><span class="person"><a href="#">joenmaes</a></span> just drank a <span class="drink"><a href="#">Duvel</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>
-            <div class="activity">
-                <img src="/img/thumbs/jonckheereM.jpg" alt="avatar jonckheereM" width="32px" height="32px" />
-                <p><span class="person"><a href="#">jonckheereM</a></span> just drank a <span class="drink"><a href="#">Malheur</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>
-            <div class="activity">
-                <img src="/img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
-                <p><span class="person"><a href="#">mmphs</a></span> just arrived at <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>
-            <div class="activity">
-                <img src="/img/thumbs/joenmaes.jpg" alt="avatar joenmaes" width="32px" height="32px" />
-                <p><span class="person"><a href="#">joenmaes</a></span> just drank a <span class="drink"><a href="#">Duvel</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>
-            <div class="activity">
-                <img src="/img/thumbs/jonckheereM.jpg" alt="avatar jonckheereM" width="32px" height="32px" />
-                <p><span class="person"><a href="#">jonckheereM</a></span> just drank a <span class="drink"><a href="#">Malheur</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>
-            <div class="activity">
-                <img src="/img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
-                <p><span class="person"><a href="#">mmphs</a></span> just arrived at <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>
+            </div>-->
         </div>
         <div id="location">
             <h2>Your location</h2>
+            <input type="hidden" id="longitude" value="{$longitude}" />
+            <input type="hidden" id="latitude" value="{$latitude}" />
             <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
             <article>
-              <p>Finding your location: <span id="status">Locating...</span></p>
+                <p id="finding">Finding your location: <span id="status">Locating...</span></p>
             </article>
 
             <script>
                 //location found
                 function success(position) {
-                    var s = document.querySelector('#status');
-                    if (s.className == 'success') {
-                        return;
-                    }
-                    s.innerHTML = "Found Location!";
-                    s.className = 'Success';
+                    window.location.href = "http://publicapp.tk/index.php?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+                    //window.location.href = "http://localhost:8888/Public/public_html/index.php?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+                }
+                if(document.querySelector('#longitude').value != "" && document.querySelector('#latitude').value != ""){
+                    document.querySelector('#finding').innerHTML = '';
 
                     var mapcanvas = document.createElement('div');
                     mapcanvas.id = 'mapcanvas';
@@ -102,7 +85,7 @@
                     document.querySelector('article').appendChild(mapcanvas);
 
                     //Geolocation
-                    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    var latlng = new google.maps.LatLng(document.querySelector('#latitude').value, document.querySelector('#longitude').value);
                     var myOptions = {
                         zoom: 15,
                         center: latlng,
@@ -118,23 +101,6 @@
                         title:"You are here!"
                     });
 
-                    //Reverse Geocoding (Address Lookup)
-
-                    var geocoder = new google.maps.Geocoder();
-                    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    geocoder.geocode({'latLng': latlng}, function(results, status) {
-                        if (status == google.maps.GeocoderStatus.OK) {
-                            if (results[0]) {
-
-                                var location = document.createElement('div');
-                                location.innerHTML = "<p>Street address: " + results[0].formatted_address + "</p>";
-                                document.querySelector('article').appendChild(location);
-                            }
-                        } else {
-                            alert("Geocoder failed due to: " + status);
-                        }
-                    });
-
                 }
                 //error handling
                 function error(msg) {
@@ -144,7 +110,7 @@
                 }
 
                 //get location
-                if (navigator.geolocation) {
+                if (navigator.geolocation && document.querySelector('#longitude').value == "" && document.querySelector('#latitude').value == "") {
                     navigator.geolocation.getCurrentPosition(success, error, {enableHighAccuracy: true});
                 } else {
                     error('not supported');
@@ -152,11 +118,9 @@
             </script>
             <h2>Popular pubs in your neighbourhood</h2>
             <ol>
-                <li><a href="#">Backdoor</a></li>
-                <li><a href="#">Bentos</a></li>
-                <li><a href="#">Charlatan</a></li>
-                <li><a href="#">De dulle Griet</a></li>
-                <li><a href="#">Bar des Amis</a></li>
+                {iteration:iPubs}
+                <li><a href="pubDetail.php?id={$iPubs.pub_id}">{$iPubs.name}</a></li>
+                {/iteration:iPubs}
             </ol>
         </div>
     </div>

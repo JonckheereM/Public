@@ -12,21 +12,22 @@
 <div id="content" class="fluid">
     <div class="container">
         <h2>List of pubs</h2>
-        <div id="map">
+        <div id="overview-map">
+            <input type="hidden" id="longitude" value="{$longitude}" />
+            <input type="hidden" id="latitude" value="{$latitude}" />
             <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
             <article>
-              <p>Finding your location: <span id="status">Locating...</span></p>
+                <p id="finding">Finding your location: <span id="status">Locating...</span></p>
             </article>
 
             <script>
                 //location found
                 function success(position) {
-                    var s = document.querySelector('#status');
-                    if (s.className == 'success') {
-                        return;
-                    }
-                    s.innerHTML = "Found Location!";
-                    s.className = 'Success';
+                    window.location.href = "http://publicapp.tk/pubs.php?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+                    //window.location.href = "http://localhost:8888/Public/public_html/pubs.php?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+                }
+                if(document.querySelector('#longitude').value != "" && document.querySelector('#latitude').value != ""){
+                    document.querySelector('#finding').innerHTML = '';
 
                     var mapcanvas = document.createElement('div');
                     mapcanvas.id = 'mapcanvas';
@@ -36,7 +37,7 @@
                     document.querySelector('article').appendChild(mapcanvas);
 
                     //Geolocation
-                    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    var latlng = new google.maps.LatLng(document.querySelector('#latitude').value, document.querySelector('#longitude').value);
                     var myOptions = {
                         zoom: 15,
                         center: latlng,
@@ -84,73 +85,20 @@
                     error('not supported');
                 }
             </script>
-            
+
         </div>
         <div id="list">
+            {iteration:iPubs}
             <div class="pub">
-                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
-                <h3><a href="#">Backdoor</a></h3>
+                <img src="img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
+                <h3><a href="pubDetail.php?id={$iPubs.pub_id}">{$iPubs.name}</a></h3>
                 <p>
-                    <span class="people"><span class="number">16</span> people</span>
+                    <span class="people"><span class="number">16</span> people TODO</span>
                     <span class="checkins"><span class="number">23</span> checkins</span>
                 </p>
             </div>
-            <div class="pub">
-                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
-                <h3><a href="#">Backdoor</a></h3>
-                <p>
-                    <span class="people"><span class="number">16</span> people</span>
-                    <span class="checkins"><span class="number">23</span> checkins</span>
-                </p>
-            </div>
-            <div class="pub">
-                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
-                <h3><a href="#">Backdoor</a></h3>
-                <p>
-                    <span class="people"><span class="number">16</span> people</span>
-                    <span class="checkins"><span class="number">23</span> checkins</span>
-                </p>
-            </div>
-            <div class="pub">
-                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
-                <h3><a href="#">Backdoor</a></h3>
-                <p>
-                    <span class="people"><span class="number">16</span> people</span>
-                    <span class="checkins"><span class="number">23</span> checkins</span>
-                </p>
-            </div>
-            <div class="pub">
-                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
-                <h3><a href="#">Backdoor</a></h3>
-                <p>
-                    <span class="people"><span class="number">16</span> people</span>
-                    <span class="checkins"><span class="number">23</span> checkins</span>
-                </p>
-            </div>
-            <div class="pub">
-                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
-                <h3><a href="#">Backdoor</a></h3>
-                <p>
-                    <span class="people"><span class="number">16</span> people</span>
-                    <span class="checkins"><span class="number">23</span> checkins</span>
-                </p>
-            </div>
-            <div class="pub">
-                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
-                <h3><a href="#">Backdoor</a></h3>
-                <p>
-                    <span class="people"><span class="number">16</span> people</span>
-                    <span class="checkins"><span class="number">23</span> checkins</span>
-                </p>
-            </div>
-            <div class="pub">
-                <img src="/img/dev/map-icon.png" alt="map icon A" width="22px" height="36px" />
-                <h3><a href="#">Backdoor</a></h3>
-                <p>
-                    <span class="people"><span class="number">16</span> people</span>
-                    <span class="checkins"><span class="number">23</span> checkins</span>
-                </p>
-            </div>
+            {/iteration:iPubs}
+
             <p class="pager">
                 <a href="#">&lt;</a>
                 <a href="#">1</a>

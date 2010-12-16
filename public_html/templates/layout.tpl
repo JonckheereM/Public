@@ -1,5 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
     <head>
 
         <title>Public - a social drinking application</title>
@@ -19,10 +20,53 @@
           <li {option:oNavPubs}class="active"{/option:oNavPubs}><a href="/pubs">Pubs</a></li>
         </ul>
 
+        <div id="fb-root"></div>
+        <script type="text/javascript">
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId   : {$appid},
+              session : {$session}, // don't refetch the session when PHP already has it
+              status  : true, // check login status
+              cookie  : true, // enable cookies to allow the server to access the session
+              xfbml   : true // parse XFBML
+            });
+
+            // whenever the user logs in, we refresh the page
+            FB.Event.subscribe('auth.login', function() {
+              window.location="fblogin.php";
+            });
+
+          };
+
+          function facebookLogin() {
+              FB.getLoginStatus(function(response) {
+                if (response.session) {
+                  //$('#fb_login_form').submit();
+                  window.location="fblogin.php";
+                } else {
+                 FB.login(function(response) {
+                    if (response.session && response.perms) {
+                      //$('#fb_login_form').submit();
+                        window.location="fblogin.php";
+                    } else { }
+                  });
+                }
+              });
+            }
+
+
+          (function() {
+            var e = document.createElement('script');
+            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+            e.async = true;
+            document.getElementById('fb-root').appendChild(e);
+          }());
+        </script>
+
         <ul id="login">
-          <li class="first"><a href="#">Login</a></li>
-          <li><a href="#">Signup</a></li>
-          <li><a href="#" class="imgreplacement">Login with Facebook</a></li>
+          <li class="first"><a href="login.php">Login</a></li>
+          <li><a href="register.php">Signup</a></li>
+          <li><a href="#" class="imgreplacement" onclick="facebookLogin(); return false;">Login with Facebook</a></li>
         </ul>
       </div>
     </div>

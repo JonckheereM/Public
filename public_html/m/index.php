@@ -12,6 +12,7 @@ require_once 'publicApp/publicApp.php';
 $tpl = new SpoonTemplate();
 $tpl->setForceCompile(true);
 $tpl->setCompileDirectory('./compiled_templates');
+$tpl->assign('formaction', $_SERVER['PHP_SELF']);
 
 SpoonSession::start();
 

@@ -13,3 +13,47 @@
 #lic{
     color:#F3B475;
 }
+.distance{
+    font-size: 10px;
+}
+
+/* *************** MOET NOG AANGEPAST WORDEN!!!!!!***************** */
+#pub-information {
+  height: 70px;
+  width: 360px;
+  background-color: #efefef;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+}
+#basic {
+  float: left;
+}
+.people {
+  float: left;
+  width: 50px;
+  margin: 0px 25px 0px 5px;
+  padding: 20px 0px 0px 15px;
+  text-align: center;
+  border-left: 2px solid #ffffff;
+  height: 70px;
+}
+
+.checkins {
+  float: left;
+  width: 50px;
+  padding: 20px 0px 0px 20px;
+  height: 70px;
+  border-left: 2px solid #ffffff;
+  text-align: center;
+}
+
+.city {
+  margin: 40px 0px 0px 15px;
+}
+
+.number {
+  font-size: 20px;
+  color: #454545;
+}
