@@ -94,23 +94,43 @@ class Pub {
     /**
      * Gets the number of people who have checked in here.
      *
-     * @return	array	All the drinks.
+     * @return	string	number of people.
      */
     function getNumberPeople() {
         $value = PublicApp::getDB()->getRecord('SELECT count(pub_id) as count FROM (SELECT DISTINCT user_id, pub_id FROM checkins
                                                 WHERE pub_id = '.$this->pub_id.' group by user_id) as counter');
         return $value['count'];
     }
-
+    
     /**
      * Gets the number of checkins of this bar.
      *
-     * @return	array	All the drinks.
+     * @return	string	number of checkins.
      */
     function getNumberCheckins() {
-        $value = PublicApp::getDB()->getRecord('SELECT count(pub_id) as count FROM (SELECT pub_id FROM checkins
-                                                WHERE pub_id = '.$this->pub_id.' group by pub_id) as counter');
-        return $value['count'];
+        $value = PublicApp::getDB()->getRecord('SELECT count(pub_id) as count FROM checkins
+                                                WHERE pub_id = '.$this->pub_id.' group by pub_id');
+        if($value['count'] === null)return 0;
+        else return $value['count'];
+    }
+
+    /**
+     * Gets the pubs within your range.
+     *
+     * @return	array	All the drinks.
+     */
+    public static function getPubsByLocation($lat, $long) {
+        $minLat = $lat - 0.02;
+        $maxLat = $lat + 0.02;
+        $minLong = $long - 0.02;
+        $maxLong = $long + 0.02;
+
+        //return PublicApp::getDB()->getRecords('SELECT * FROM pubs WHERE latitude > '.$minLat.' and latitude < '.$maxLat.' and longitude > '.$minLong.' and longitude < '.$maxLong);
+
+        return PublicApp::getDB()->getRecords('SELECT * , (latitude - '.$lat.') AS dif_lat, (longitude - '.$long.') AS dif_long FROM pubs
+                                                WHERE (latitude - '.$lat.') < 0.02 AND(longitude - '.$long.') < 0.02
+                                                GROUP BY (latitude - '.$lat.') DESC');
+
     }
 }
 
