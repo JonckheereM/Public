@@ -13,55 +13,6 @@ $tpl = new SpoonTemplate();
 $tpl->setForceCompile(true);
 $tpl->setCompileDirectory('./compiled_templates');
 
-
-//Content layout
-$tpl->assign('oNavHome', true);
-
-$lat = SpoonFilter::getGetValue('lat', null, '');
-$long = SpoonFilter::getGetValue('long', null, '');
-$pubs = array();
-
-if ($lat !== "" && $long !== "") {
-    $tpl->assign('latitude', $lat);
-    $tpl->assign('longitude', $long);
-
-    $pubs = Pub::getPubsByLocation($lat, $long);
-} else {
-    $tpl->assign('latitude', "");
-    $tpl->assign('longitude', "");
-}
-
-$tpl->assign('iPubs', $pubs);
-
-$recentDrinks = PublicApp::getRecentDrinks();
-$recentCheckins = PublicApp::getRecentCheckins();
-
-$recent = array_merge($recentDrinks, $recentCheckins);
-
-function compare_time($a, $b) {
-    return strnatcmp($b['timestamp'], $a['timestamp']);
-}
-
-
-usort($recent, 'compare_time');
-$test = array();
-for ($i = 0; $i<10 ; $i++){
-    if($recent[$i] !== null)$test[] = $recent[$i];
-}
-
-$recent = $test;
-
-for ($i = 0; $i < sizeof($recent); $i++) {
-    $recent[$i]['timestamp'] = SpoonDate::getTimeAgo(strtotime($recent[$i]['timestamp']));
-}
-
-if ($recent !== null) {
-    $tpl->assign('oRecent', true);
-    $tpl->assign('iRecent', $recent);
-}
-else
-    $tpl->assign('oNoRecent', true);
-
 /*
  * Start the login magic
  * @joenmaes
@@ -94,11 +45,63 @@ if ($session) {
 $tpl->assign('appid', $facebook->getAppId());
 $tpl->assign('session', json_encode($session));
 
-
 /*
  * End the login magic
  * @joenmaes
  */
+
+//Content layout
+$tpl->assign('oNavHome', true);
+
+$lat = SpoonFilter::getGetValue('lat', null, '');
+$long = SpoonFilter::getGetValue('long', null, '');
+$pubs = array();
+
+if ($lat !== "" && $long !== "") {
+    $tpl->assign('latitude', $lat);
+    $tpl->assign('longitude', $long);
+
+    $pubs = Pub::getPubsByLocation($lat, $long);
+
+    $abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for($i = 0; $i< sizeof($pubs); $i++){
+        $pubs[$i]["letter"] = substr($abc, $i, 1);
+    }
+} else {
+    $tpl->assign('latitude', '""');
+    $tpl->assign('longitude', '""');
+}
+
+$tpl->assign('iPubs', $pubs);
+
+$recentDrinks = PublicApp::getRecentDrinks();
+$recentCheckins = PublicApp::getRecentCheckins();
+
+$recent = array_merge($recentDrinks, $recentCheckins);
+
+function compare_time($a, $b) {
+    return strnatcmp($b['timestamp'], $a['timestamp']);
+}
+
+
+usort($recent, 'compare_time');
+$test = array();
+for ($i = 0; $i<10 ; $i++){
+    if($recent[$i] !== null)$test[] = $recent[$i];
+}
+
+$recent = $test;
+
+for ($i = 0; $i < sizeof($recent); $i++) {
+    $recent[$i]['timestamp'] = SpoonDate::getTimeAgo(strtotime($recent[$i]['timestamp']));
+}
+
+if ($recent !== null) {
+    $tpl->assign('oRecent', true);
+    $tpl->assign('iRecent', $recent);
+}
+else
+    $tpl->assign('oNoRecent', true);
 
 // show the output
 $tpl->assign('content', $tpl->getContent('templates/index.tpl'));

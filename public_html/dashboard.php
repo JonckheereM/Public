@@ -12,7 +12,12 @@
     $tpl->setForceCompile(true);
     $tpl->setCompileDirectory('./compiled_templates');
 
-    
+    // do I know you?
+    if(SpoonSession::exists('public_uid')){
+
+    }else{ //GTFO!!!
+        SpoonHTTP::redirect('index.php');
+    }
 
     // show the output
     $tpl->assign('content', $tpl->getContent('templates/dashboard.tpl'));
