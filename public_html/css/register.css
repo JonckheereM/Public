@@ -1,0 +1,44 @@
+#registerFormHolder{
+    margin-left: auto ;
+    margin-right: auto ;
+    width:400px;    
+    margin-bottom: 40px;
+}
+
+#registerFormHolder fieldset {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 1em;
+    width: 400px;
+}
+
+#registerFormHolder legend {
+    color: #ccc;
+    font-size: 120%;
+}
+
+#registerFormHolder input, textarea {
+    font-family: Arial, verdana;
+    font-size: 125%;
+    padding: 7px;
+}
+
+#registerFormHolder label {
+    display: block;
+    margin-top: 10px;
+}
+
+#registerFormHolder img {
+    margin: 5px;
+}
+
+#registerFormHolder .connected{
+    text-align:center;
+    color:#888;
+}
+
+#registerFormHolder .connected img{
+    position: relative;
+    top: 7px;
+}
+
