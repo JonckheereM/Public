@@ -42,7 +42,7 @@
             <div class="activity">
                 <img src="img/thumbs/{$iRecent.username}.jpg" alt="avatar {$iRecent.username}" width="32px" height="32px" />
                 {option:iRecent.drink_id}<p><span class="person"><a href="#">{$iRecent.username}</a></span> just drank a <span class="drink"><a href="drinkDetail.php?id={$iRecent.drink_id}">{$iRecent.drinkname}</a></span> in <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}">{$iRecent.pubname}</a></span></p>{/option:iRecent.drink_id}
-                {option:iRecent.checkin_id}<p><span class="person"><a href="#">{$iRecent.username}</a></span> just arrived at <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}">Backdoor</a></span></p>{/option:iRecent.checkin_id}
+                {option:iRecent.checkin_id}<p><span class="person"><a href="#">{$iRecent.username}</a></span> just arrived at <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}">{$iRecent.pubname}</a></span></p>{/option:iRecent.checkin_id}
                 <p><span class="timespan">{$iRecent.timestamp}</span></p>
             </div>
             {/iteration:iRecent}
@@ -50,14 +50,6 @@
             {option:oNoRecent}
             <p>No recent activities.</p>
             {/option:oNoRecent}
-            <!--<div class="activity">
-                <img src="img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
-                <p><span class="person"><a href="#">mmphs</a></span> just arrived at <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>
-            <div class="activity">
-                <img src="img/thumbs/joenmaes.jpg" alt="avatar joenmaes" width="32px" height="32px" />
-                <p><span class="person"><a href="#">joenmaes</a></span> just drank a <span class="drink"><a href="#">Duvel</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>-->
         </div>
         <div id="location">
             <h2>Your location</h2>
@@ -153,7 +145,7 @@
             <h2>Popular pubs in your neighbourhood</h2>
             <ol>
                 {iteration:iPubs}
-                <li><a href="pubDetail.php?id={$iPubs.pub_id}">{$iPubs.name}</a></li>
+                <li><a href="pubDetail.php?id={$iPubs.pub_id}">{$iPubs.name}</a> - {$iPubs.distance}</li>
                 {/iteration:iPubs}
             </ol>
         </div>

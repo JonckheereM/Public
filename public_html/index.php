@@ -66,6 +66,11 @@ if ($lat !== "" && $long !== "") {
     $abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for($i = 0; $i< sizeof($pubs); $i++){
         $pubs[$i]["letter"] = substr($abc, $i, 1);
+
+        $pub = new Pub($pubs[$i]['pub_id']);
+        $distance = $pub->calculateDistance($lat, $long, "k");
+        if($distance > 1)$pubs[$i]["distance"] = round($distance, 3).' kilometer';
+        else $pubs[$i]["distance"] = (round($distance, 3)*1000).' meter';
     }
 } else {
     $tpl->assign('latitude', '""');
@@ -82,7 +87,6 @@ $recent = array_merge($recentDrinks, $recentCheckins);
 function compare_time($a, $b) {
     return strnatcmp($b['timestamp'], $a['timestamp']);
 }
-
 
 usort($recent, 'compare_time');
 $test = array();

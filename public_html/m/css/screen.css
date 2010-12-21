@@ -16,44 +16,72 @@
 .distance{
     font-size: 10px;
 }
+.clear{
+    clear: both;
+}
 
-/* *************** MOET NOG AANGEPAST WORDEN!!!!!!***************** */
+
+/* Activity */
+
+.activity {
+    border-bottom: 1px dotted #7E7770;
+    margin-top: 8px;
+    min-height: 30px;
+}
+.activity img {
+    float: left;
+    margin-right: 15px;
+}
+.activity p{
+    font-size: 12px;
+    margin: 0 0 10px 50px;
+    min-height: 30px;
+}
+/* Pub detail */
 #pub-information {
-  height: 70px;
-  width: 360px;
   background-color: #efefef;
   margin-bottom: 10px;
-  padding-bottom: 10px;
+  padding-left: 5px;
   border-radius: 10px;
   -moz-border-radius: 10px;
 }
 #basic {
   float: left;
+  max-width: 130px;
 }
-.people {
-  float: left;
+.people, .checkins {
+  float: right;
   width: 50px;
-  margin: 0px 25px 0px 5px;
-  padding: 20px 0px 0px 15px;
+  padding: 20px 5px 0 5px;
+  margin: 0 7px 0 7px;
   text-align: center;
   border-left: 2px solid #ffffff;
-  height: 70px;
+  height: 60px;
 }
-
-.checkins {
-  float: left;
-  width: 50px;
-  padding: 20px 0px 0px 20px;
-  height: 70px;
-  border-left: 2px solid #ffffff;
-  text-align: center;
-}
-
-.city {
-  margin: 40px 0px 0px 15px;
+.city{
+    clear: both;
 }
 
 .number {
   font-size: 20px;
   color: #454545;
+}
+
+/* Drink detail */
+
+#drink-information {
+    -moz-border-radius: 10px;
+    background-color: #EFEFEF;
+    height: 110px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+#drink-information img {
+    float: left;
+    margin-right: 15px;
+}
+#drink-detail h3 {
+    color: #454545;
+    font-size: 20px;
 }

@@ -55,12 +55,13 @@ $tpl->assign('oNavPubs', true);
 
 $lat = SpoonFilter::getGetValue('lat', null, '');
 $long = SpoonFilter::getGetValue('long', null, '');
+
+
 $pubs = array();
 
 if ($lat !== "" && $long !== "") {
     $tpl->assign('latitude', $lat);
     $tpl->assign('longitude', $long);
-
     $pubs = Pub::getPubsByLocation($lat, $long);
     
     $abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

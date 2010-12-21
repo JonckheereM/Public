@@ -74,7 +74,7 @@ if (SpoonFilter::getPostValue('btnSignup', null, '') !== "") {
         $user->last_name = $last_name;
         $user->username = $username;
         $user->mail = $mail;
-        $user->password = $password;
+        $user->password = md5($password);
         $user->Add();
         SpoonSession::start();
         SpoonSession::set('id', $user->user_id);
