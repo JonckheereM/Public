@@ -28,8 +28,29 @@
         <div class="clear"></div>
 
     </div>
-    
+
     <a href="drinks.php"data-role="button" data-theme="b" rel="external">Add Drink!</a>
+
+    <h4>You have drunk:</h4>
+
+
+    <ul id="checkinTabs">
+        {iteration:iTabs}
+        <li>
+            <div class="checkinDrink">
+                <span class="drinkCount">{$iTabs.count}</span> X
+                <span class="drink"><a href="drinkDetail.php?id={$iTabs.drink_id}" rel="external">{$iTabs.name}</a></span>
+            </div>
+            <div data-role="controlgroup" data-type="horizontal" class="drinkPlusMin">
+                <a rel="external" href="checkin.php?drinkid={$iTabs.drink_id}&event=min" title="min" data-inline="true" data-role="button" data-icon="minus" data-iconpos="right"></a>
+                <a rel="external" href="checkin.php?drinkid={$iTabs.drink_id}&event=plus" title="plus" data-inline="true" data-role="button" data-icon="plus"></a>
+            </div>
+            <div class="clear"></div>
+        </li>
+        {/iteration:iTabs}
+    </ul>
+
+
     {/option:oCheckIn}
     {option:oNoCheckIn}
     <p>You don't have an active check in.</p>

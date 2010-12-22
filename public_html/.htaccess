@@ -1,5 +1,5 @@
 Options +FollowSymLinks
-RewriteEngine on
+RewriteEngine off
 
 RewriteBase /
 

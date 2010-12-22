@@ -50,6 +50,8 @@ else
 
 $tpl->assign('pub_id', $pub->pub_id);
 $tpl->assign('name', $pub->name);
+$tpl->assign('longitude', $pub->longitude);
+$tpl->assign('latitude', $pub->latitude);
 $tpl->assign('people', $pub->getNumberPeople());
 $tpl->assign('checkins', $pub->getNumberCheckins());
 
