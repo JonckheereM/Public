@@ -1,3 +1,9 @@
+<style type="text/css">
+  #footer {
+    position:absolute;
+    bottom:0;
+}
+</style>
 <div id="quick-menu" class="fluid">
     <div class="container">
         <form action="#" method="get">

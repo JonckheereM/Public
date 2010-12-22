@@ -287,8 +287,8 @@ a.button {
 
 /* content */
 #content {
-  min-height: 625px;
   margin-bottom: 25px;
+  clear: both;
 }
 
 #content #recent-activity {

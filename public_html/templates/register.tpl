@@ -1,3 +1,14 @@
+<div id="quick-menu" class="fluid">
+    <div class="container">
+        &nbsp;
+    </div>
+</div>
+<style type="text/css">
+  #footer {
+    position:absolute;
+    bottom:0;
+}
+</style>
 <script src="https://www.google.com/jsapi?key=ABQIAAAAjClSPIOxNBGxBX4-wq0z2RR75ioQX0VOMPX_acNpIAmoM0SKwBTs1bZPV2MDQ-Ye-OpLfVC0J89Isw" type="text/javascript"></script>
 <script type="text/javascript">
     google.load("jquery", "1");
@@ -21,7 +32,7 @@ $(function() {
 
 <div id="registerFormHolder">
 
-    <div id="fb-root"></div>
+    <div id="fb-root">&nbsp;</div>
     <script type="text/javascript">
       window.fbAsyncInit = function() {
         FB.init({
