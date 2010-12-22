@@ -28,6 +28,53 @@ if (SpoonFilter::getPostValue('btnCheckIn', null, '') !== "") {
     $check->pub = new Pub(SpoonFilter::getPostValue('pub_id', null, ''));
     $check->user = new User(SpoonSession::get('id'));
     $id = $check->Add();
+
+    $db = new SpoonDatabase('mysql', 'localhost', 'xqdchsmn_public', 'pRAcHU8Ajath7qa3', 'xqdchsmn_public');
+    $user = $db->getRecord('SELECT * FROM users WHERE user_id = ?', SpoonSession::get('id'));
+
+    /*post to facebook*/
+        if($user['fb_publish_stream']){
+            require_once 'facebook/facebook.php';
+
+            // Create our Application instance (replace this with your appId and secret).
+            $facebook = new Facebook(array(
+                  'appId'  => '118234134911012',
+                  'secret' => 'a83b1fbf766dcf41a8238a13f53690bd',
+                  'cookie' => true,
+                ));
+
+            $uid = SpoonSession::get('id');
+            $db = new SpoonDatabase('mysql', 'localhost', 'xqdchsmn_public', 'pRAcHU8Ajath7qa3', 'xqdchsmn_public');
+            $user = $db->getRecord('SELECT * FROM users WHERE user_id = ?', $uid);
+
+            $fb_uid = $user['fb_uid'];
+            $messageContent = 'I\'m at '.$check->pub->name.' - http://publicapp.tk/pubs/'.$check->pub->pub_id.'';
+            $facebook->api($fb_uid.'/feed', 'post', array('message'=> $messageContent, 'cb' => ''));
+        }
+
+    /*end*/
+
+    /*post to twitter*/
+        if($user['twitter_uid']){
+            require_once('twitteroauth/twitteroauth.php');
+
+            define('CONSUMER_KEY', '4K5I4iPpEGc4KgTN1VnKDA');
+            define('CONSUMER_SECRET', 'cRWey0CbUXuD0qIrA89s9tKQjHtxQXRn8leR7AiI');
+            define('OAUTH_CALLBACK', 'http://www.publicapp.tk/twittercallback.php');
+
+            $uid = SpoonSession::get('id');
+            $db = new SpoonDatabase('mysql', 'localhost', 'xqdchsmn_public', 'pRAcHU8Ajath7qa3', 'xqdchsmn_public');
+            $user = $db->getRecord('SELECT * FROM users WHERE user_id = ?', $uid);
+            $twitter_token = $user['twitter_token'];
+            $twitter_secret = $user['twitter_secret'];
+            $messageContent = 'I\'m at '.$check->pub->name.' - http://publicapp.tk/pubs/'.$check->pub->pub_id.'';
+
+
+            $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $twitter_token, $twitter_secret);
+            $response = $connection->post('statuses/update', array('status' => $messageContent));
+        }
+    /*end*/
+
     SpoonHTTP::redirect('checkin.php');
 }
 

@@ -1,15 +1,9 @@
 Options +FollowSymLinks
-RewriteEngine off
+RewriteEngine on
 
 RewriteBase /
 
-RewriteRule index\.php http://www.publicapp.tk/ [R=301,L]
 
-RewriteRule ^(.*)/index\.php http://www.publicapp.tk/$1/ [R=301,L]
-
-RewriteCond %{HTTP_HOST} !^www\..*
-
-RewriteRule ^.*$ http://www.publicapp.tk%{REQUEST_URI} [R=permanent,L]
 
 RewriteRule ^pubs/?$ ./pubs.php
 RewriteRule ^pubs/(\d+)/?$ ./pubDetail.php?id=$1
