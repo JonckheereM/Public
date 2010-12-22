@@ -24,8 +24,8 @@
                 
                 //location found
                 function success(position) {
-                    //window.location.href = "http://publicapp.tk/pubs.php?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
-                    window.location.href = "http://localhost:8888/Public/public_html/pubs.php?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+                    window.location.href = "http://publicapp.tk/pubs.php?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+                    //window.location.href = "http://localhost:8888/Public/public_html/pubs.php?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
                 }
                 if(longitude != "" && latitude != ""){
                     document.querySelector('#finding').innerHTML = '';

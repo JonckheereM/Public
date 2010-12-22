@@ -59,13 +59,15 @@
 
 
             <div id="map">
+                <input type="hidden" id="longitude" value="{$longitude}" />
+                <input type="hidden" id="latitude" value="{$latitude}" />
                 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
                 <article>
                 </article>
 
                 <script>
-                    var longitude = document.querySelector('{$longitude}').value;
-                    var latitude = document.querySelector('{$latitude}').value;
+                    var longitude = document.querySelector('#longitude').value;
+                    var latitude = document.querySelector('#latitude').value;
 
                     var mapcanvas = document.createElement('div');
                     mapcanvas.id = 'mapcanvas';

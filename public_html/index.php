@@ -53,6 +53,19 @@ $tpl->assign('session', json_encode($session));
 //Content layout
 $tpl->assign('oNavHome', true);
 
+/*
+ * Begin when logged in
+ * @joenmaes
+ */
+if(SpoonSession::exists('public_uid')){
+    //show logout
+    $tpl->assign('oLogout', true);
+}
+/*
+ * End when logged in
+ * @joenmaes
+ */
+
 $lat = SpoonFilter::getGetValue('lat', null, '');
 $long = SpoonFilter::getGetValue('long', null, '');
 $pubs = array();
