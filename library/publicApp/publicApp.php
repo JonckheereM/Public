@@ -69,6 +69,23 @@ class PublicApp {
                                                 INNER JOIN pubs ON checkins.pub_id = pubs.pub_id
                                                 ORDER BY checkins.timestamp DESC LIMIT 10');
     }
+	
+	public static function getRecentUserDrinks($uid) {
+        return PublicApp::getDB()->getRecords('SELECT tabs.timestamp, tabs.drink_id, drinks.name as drinkname, pubs.pub_id, pubs.name as pubname, users.user_id, users.username, users.fb_uid FROM tabs 
+                                                INNER JOIN checkins on tabs.checkin_id = checkins.checkin_id
+                                                INNER JOIN users on checkins.user_id = users.user_id
+                                                INNER JOIN pubs on checkins.pub_id = pubs.pub_id
+                                                INNER JOIN drinks on tabs.drink_id = drinks.drink_id
+                                                where users.user_id = '.$uid);
+    }
+	
+	public static function getRecentUserCheckins($uid) {
+        return PublicApp::getDB()->getRecords('SELECT checkins.timestamp, checkins.checkin_id, pubs.pub_id, pubs.name AS pubname, users.user_id, users.username, users.fb_uid
+                                                FROM checkins 
+                                                INNER JOIN users ON checkins.user_id = users.user_id
+                                                INNER JOIN pubs ON checkins.pub_id = pubs.pub_id
+                                                where users.user_id = '.$uid);
+    }
 }
 
 ?>
