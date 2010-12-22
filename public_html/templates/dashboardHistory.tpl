@@ -5,16 +5,16 @@
             <li><a href="dashboardHistory.php">History | </a></li>
             <!--<li><a href="dashboardStats.php">Stats | </a></li>-->
             <li><a href="dashboardFriends.php">Friends | </a></li>
-        </ul>        
+        </ul>
     </div>
 </div>
 
 <div id="content" class="fluid">
     <div class="container">
-        <h2><img src="https://graph.facebook.com/{$fbu}/picture" alt="profilepicture" width="50px" height="50px"> Hi, {$uname}! - Ghent</h2>
-        <h3>Last seen {$lastDate} at <a href="pubDetail.php?id={$lastPubId}">{$lastPub}</a></h3>
 
-        <h2>Friends' Recent Check-ins and Drinks</h2>
+        <h2>Check-in History</h2>
+        <h3>Here's a quick recap of all the places you've been.</h3>
+
         {iteration:iRecent}
         <div class="activity">
             <img src="https://graph.facebook.com/{$iRecent.fb_uid}/picture" alt="profilepicture" width="32px" height="32px" />
@@ -23,7 +23,5 @@
             <p><span class="timespan">{$iRecent.timestamp}</span></p>
         </div>
         {/iteration:iRecent}
-
-
     </div>
 </div>

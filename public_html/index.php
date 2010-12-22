@@ -90,7 +90,8 @@ if ($lat !== "" && $long !== "") {
     $tpl->assign('longitude', '""');
 }
 
-$tpl->assign('iPubs', $pubs);
+if($pubs !== null){$tpl->assign('iPubs', $pubs);}
+else{$tpl->assign('iPubs', array());}
 
 $recentDrinks = PublicApp::getRecentDrinks();
 $recentCheckins = PublicApp::getRecentCheckins();
@@ -114,10 +115,8 @@ for ($i = 0; $i < sizeof($recent); $i++) {
 
     //check if the user has a fb account authenticated
     if(!$recent[$i]['fb_uid']){
-
         //else, use standard fb icon
         $recent[$i]['fb_uid'] = 1;
-
     }
 }
 

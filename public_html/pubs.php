@@ -83,7 +83,8 @@ if ($lat !== "" && $long !== "") {
 }
 
 
-$tpl->assign('iPubs', $pubs);
+if($pubs !== null){$tpl->assign('iPubs', $pubs);}
+else{$tpl->assign('iPubs', array());}
 
 // show the output
 $tpl->assign('content', $tpl->getContent('templates/pubs.tpl'));

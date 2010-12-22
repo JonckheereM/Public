@@ -32,8 +32,8 @@
          $tpl->assign('lastDate', SpoonDate::getTimeAgo(strtotime($lastChecking['timestamp'])));
 
          /*code max*/
-         $recentDrinks = PublicApp::getRecentDrinks();
-        $recentCheckins = PublicApp::getRecentCheckins();
+         $recentDrinks = PublicApp::getRecentUserDrinks(10);
+        $recentCheckins = PublicApp::getRecentUserCheckins(10);
 
         $recent = array_merge($recentDrinks, $recentCheckins);
 
@@ -73,7 +73,7 @@
     }
 
     // show the output
-    $tpl->assign('content', $tpl->getContent('templates/dashboard.tpl'));
+    $tpl->assign('content', $tpl->getContent('templates/dashboardHistory.tpl'));
     $tpl->display('templates/layout.tpl');
 
 ?>
