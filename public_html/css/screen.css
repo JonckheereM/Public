@@ -3,6 +3,7 @@
 */
 
 /* general page structure */
+
 #header {
   height: 75px;
 }
@@ -287,6 +288,7 @@ a.button {
 /* content */
 #content {
   margin-bottom: 25px;
+  clear: both;
 }
 
 #content #recent-activity {
