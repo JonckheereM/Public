@@ -29,7 +29,12 @@ if ($lat !== "" && $long !== "") {
 
     $pubs = Pub::getPubsByLocation($lat, $long);
 
-    
+    for($i = 0; $i< sizeof($pubs); $i++){
+        $pub = new Pub($pubs[$i]['pub_id']);
+        $distance = $pub->calculateDistance($lat, $long, "k");
+        if($distance > 1)$pubs[$i]["distance"] = round($distance, 3).' kilometer';
+        else $pubs[$i]["distance"] = (round($distance, 3)*1000).' meter';
+    }
 }else{
     $tpl->assign('latitude', "");
     $tpl->assign('longitude', "");

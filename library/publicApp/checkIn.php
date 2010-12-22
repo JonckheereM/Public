@@ -57,8 +57,10 @@ class CheckIn {
 
             //Get the tabs and put them in the tabs array
             $var = PublicApp::getDB()->getRecords('SELECT * FROM tabs WHERE checkin_id = ?', $id);
-            foreach ($var as $tab) {
-                $this->tabs[] = new Tab($tab['drink_id'], $tab['timestamp']);
+            if ($var !== null) {
+                foreach ($var as $tab) {
+                    $this->tabs[] = new Tab($tab['drink_id'], $tab['timestamp']);
+                }
             }
         }
     }
@@ -71,8 +73,7 @@ class CheckIn {
     function Add() {
         $values = array(
             'pub_id' => $this->pub->pub_id,
-            'user_id' => $this->user->user_id,
-            'timestamp' => $this->timestamp,
+            'user_id' => $this->user->user_id
         );
         //Update the databank
         return PublicApp::getDB()->insert('checkins', $values);
@@ -88,9 +89,9 @@ class CheckIn {
         $this->tabs[] = $newTab;
         $values = array(
             'checkin_id' => $this->checkin_id,
-            'drink_id' => $newTab->drink->drink_id,
-            'timestamp' => $newTab->timestamp,
+            'drink_id' => $newTab->drink->drink_id
         );
+        $this->tabs[] = $newTab;
         //Update the databank
         return PublicApp::getDB()->insert('tabs', $values);
     }
@@ -104,7 +105,7 @@ class CheckIn {
         $values = array(
             'pub_id' => $this->pub->pub_id,
             'user_id' => $this->user->user_id,
-            'timestamp' => $this->timestamp,
+            'timestamp' => $this->timestamp
         );
         //Update the databank
         return PublicApp::getDB()->update('checkins', $values, 'checkin_id = ?', $this->checkin_id);
@@ -128,7 +129,7 @@ class CheckIn {
      */
     function DeleteTab($id) {
         //Update the databank
-        PublicApp::getDB()->delete('tabs', 'checkin_id = ? AND drink_id = ? AND timestamp = ?', array($this->checkin_id, $this->tabs[$id]->drink->drink_id, $this->tabs[$id]->timestamp));
+        PublicApp::getDB()->delete('tabs', 'checkin_id = '.$this->checkin_id.' and drink_id='.$id.' limit 1');
         unset($this->tabs[$id]);
     }
 
@@ -141,7 +142,7 @@ class CheckIn {
         return PublicApp::getDB()->getRecords('SELECT checkins.timestamp, users.user_id, users.username, pubs.pub_id, pubs.name as pubname FROM checkins
                                                 INNER JOIN users on checkins.user_id = users.user_id
                                                 INNER JOIN pubs on checkins.pub_id = pubs.pub_id
-                                                WHERE checkins.pub_id = '.$id.' order by checkins.timestamp desc');
+                                                WHERE checkins.pub_id = ' . $id . ' order by checkins.timestamp desc LIMIT 10');
     }
 
     /**
@@ -152,7 +153,36 @@ class CheckIn {
     public static function getTopCheckinsByPubId($id) {
         return PublicApp::getDB()->getRecords('SELECT users.user_id, users.username, count(users.user_id) as count FROM checkins
                                                 INNER JOIN users on checkins.user_id = users.user_id
-                                                WHERE checkins.pub_id = '.$id.' group by users.user_id asc LIMIT 5');
+                                                WHERE checkins.pub_id = ' . $id . ' group by users.user_id asc LIMIT 5');
+    }
+
+    /**
+     * Gets the top checkins with a specific pub.
+     *
+     * @return	Checkin	The latest checkin of a user.
+     */
+    public static function getLatestCheckinByUserId($id) {
+        $c = PublicApp::getDB()->getRecord('SELECT * FROM checkins
+                                            WHERE DATEDIFF( timestamp, now( ) )=0 and checkins.user_id = ' . $id . ' order by checkin_id desc LIMIT 1');
+
+        $checkin = new CheckIn('');
+        $checkin->checkin_id = $c["checkin_id"];
+        $checkin->pub = new Pub($c["pub_id"]);
+        $checkin->timestamp = $c["timestamp"];
+        $checkin->user = new User($c["user_id"]);
+
+        return $checkin;
+    }
+
+    /**
+     * Gets the top checkins with a specific pub.
+     *
+     * @return	Checkin	The latest checkin of a user.
+     */
+    public function getTabs() {
+        return PublicApp::getDB()->getRecords('SELECT drinks.drink_id, drinks.name, count(drinks.drink_id) as count FROM tabs
+                                                INNER JOIN drinks on tabs.drink_id = drinks.drink_id
+                                                WHERE checkin_id = ' . $this->checkin_id.' group by drinks.drink_id');
     }
 
 }

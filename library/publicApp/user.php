@@ -92,8 +92,10 @@ class User extends PublicApp {
 
             //Get the friends and put them in the friends array
             $var = PublicApp::getDB()->getRecords('SELECT * FROM friends WHERE user_id = ?', $id);
-            foreach ($var as $friend) {
-                $this->friends[] = new User($friend['friend']);
+            if ($var !== null) {
+                foreach ($var as $friend) {
+                    $this->friends[] = new User($friend['friend']);
+                }
             }
         }
     }
@@ -157,7 +159,7 @@ class User extends PublicApp {
      */
     public static function existsUser($username) {
         $var = PublicApp::getDB()->getRecord('SELECT * FROM users WHERE username = ?', $username);
-        $user = new User();
+        $user = new User('');
         $user->user_id = $var['user_id'];
         $user->username = $var['username'];
         $user->first_name = $var['first_name'];

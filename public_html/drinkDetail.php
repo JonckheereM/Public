@@ -14,6 +14,11 @@
     
     
     //Content layout
+
+    if(SpoonSession::exists('public_uid')){
+        //show logout
+        $tpl->assign('oLogout', true);
+    }
     
     $drink = new Drink(SpoonFilter::getGetValue('id', null, ''));
 
@@ -24,6 +29,12 @@
 
     for($i = 0; $i < sizeof($recent); $i++){
         $recent[$i]['timestamp']= SpoonDate::getTimeAgo(strtotime($recent[$i]['timestamp']));
+
+        //check if the user has a fb account authenticated
+        if(!$recent[$i]['fb_uid']){
+            //else, use standard fb icon
+            $recent[$i]['fb_uid'] = 1;
+        }
     }
 
     

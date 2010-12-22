@@ -14,7 +14,8 @@
 
     // do I know you?
     if(SpoonSession::exists('public_uid')){
-
+        $tpl->assign('oLogout', true);
+        $tpl->assign('oNavMe', true);
     }else{ //GTFO!!!
         SpoonHTTP::redirect('index.php');
     }

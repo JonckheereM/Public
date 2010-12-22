@@ -50,6 +50,11 @@ $tpl->assign('session', json_encode($session));
  * @joenmaes
  */
 
+if(SpoonSession::exists('public_uid')){
+    //show logout
+    $tpl->assign('oLogout', true);
+}
+
 //Content layout
 $tpl->assign('oNavPubs', true);
 

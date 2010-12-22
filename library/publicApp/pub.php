@@ -98,10 +98,19 @@ class Pub {
      */
     function getNumberPeople() {
         $value = PublicApp::getDB()->getRecord('SELECT count(pub_id) as count FROM (SELECT DISTINCT user_id, pub_id FROM checkins
-                                                WHERE pub_id = '.$this->pub_id.' group by user_id) as counter');
+                                                WHERE pub_id = ' . $this->pub_id . ' group by user_id) as counter');
         return $value['count'];
     }
-    
+
+    /**
+     * Gets the distance between two locations.
+     *
+     * @return	float   distance in km.
+     */
+    function calculateDistance($lat, $lon, $unit) {
+        return (3958 * 3.1415926 * sqrt(($lat - $this->latitude) * ($lat - $this->latitude) + cos($lat / 57.29578) * cos($this->latitude / 57.29578) * ($lon - $this->longitude) * ($lon - $this->longitude)) / 180);
+    }
+
     /**
      * Gets the number of checkins of this bar.
      *
@@ -109,9 +118,12 @@ class Pub {
      */
     function getNumberCheckins() {
         $value = PublicApp::getDB()->getRecord('SELECT count(pub_id) as count FROM checkins
-                                                WHERE pub_id = '.$this->pub_id.' group by pub_id');
-        if($value['count'] === null)return 0;
-        else return $value['count'];
+                                                WHERE pub_id = ' . $this->pub_id . ' group by pub_id');
+        if ($value['count'] === null
+
+            )return 0;
+        else
+            return $value['count'];
     }
 
     /**
@@ -120,18 +132,11 @@ class Pub {
      * @return	array	All the drinks.
      */
     public static function getPubsByLocation($lat, $long) {
-        $minLat = $lat - 0.02;
-        $maxLat = $lat + 0.02;
-        $minLong = $long - 0.02;
-        $maxLong = $long + 0.02;
-
-        //return PublicApp::getDB()->getRecords('SELECT * FROM pubs WHERE latitude > '.$minLat.' and latitude < '.$maxLat.' and longitude > '.$minLong.' and longitude < '.$maxLong);
-
-        return PublicApp::getDB()->getRecords('SELECT * , (latitude - '.$lat.') AS dif_lat, (longitude - '.$long.') AS dif_long FROM pubs
-                                                WHERE (latitude - '.$lat.') < 0.02 AND(longitude - '.$long.') < 0.02
-                                                GROUP BY (latitude - '.$lat.') DESC');
-
+        return PublicApp::getDB()->getRecords('SELECT * , (latitude - ' . $lat . ') AS dif_lat, (longitude - ' . $long . ') AS dif_long FROM pubs
+                                                WHERE (latitude - ' . $lat . ') < 0.02 AND(longitude - ' . $long . ') < 0.02
+                                                GROUP BY (latitude - ' . $lat . ') DESC');
     }
+
 }
 
 ?>

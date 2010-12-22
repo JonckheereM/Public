@@ -40,7 +40,8 @@
             {option:oRecent}
             {iteration:iRecent}
             <div class="activity">
-                <img src="img/thumbs/{$iRecent.username}.jpg" alt="avatar {$iRecent.username}" width="32px" height="32px" />
+                <!--<img src="img/thumbs/{$iRecent.username}.jpg" alt="avatar {$iRecent.username}" width="32px" height="32px" />-->
+                <img src="https://graph.facebook.com/{$iRecent.fb_uid}/picture" alt="profilepicture" width="32px" height="32px" />                
                 {option:iRecent.drink_id}<p><span class="person"><a href="#">{$iRecent.username}</a></span> just drank a <span class="drink"><a href="drinkDetail.php?id={$iRecent.drink_id}">{$iRecent.drinkname}</a></span> in <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}">{$iRecent.pubname}</a></span></p>{/option:iRecent.drink_id}
                 {option:iRecent.checkin_id}<p><span class="person"><a href="#">{$iRecent.username}</a></span> just arrived at <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}">Backdoor</a></span></p>{/option:iRecent.checkin_id}
                 <p><span class="timespan">{$iRecent.timestamp}</span></p>
@@ -153,7 +154,7 @@
             <h2>Popular pubs in your neighbourhood</h2>
             <ol>
                 {iteration:iPubs}
-                <li><a href="pubDetail.php?id={$iPubs.pub_id}">{$iPubs.name}</a></li>
+                <li><a href="pubDetail.php?id={$iPubs.pub_id}">{$iPubs.name}</a> - {$iPubs.distance}</li>
                 {/iteration:iPubs}
             </ol>
         </div>

@@ -28,7 +28,7 @@ $password = SpoonFilter::getPostValue('password', null, '');
 
 if (SpoonFilter::getPostValue('btnSignin', null, '') !== "") {
     $check = User::existsUser($username);
-    if ($check !== false && $check->password === $password) {
+    if ($check !== false && $check->password === md5($password)) {
         
         SpoonSession::set('id', $check->user_id);
         SpoonHTTP::redirect('dashboard.php');
