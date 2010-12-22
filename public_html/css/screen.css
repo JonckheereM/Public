@@ -3,6 +3,7 @@
 */
 
 /* general page structure */
+
 #header {
   height: 75px;
 }
@@ -286,6 +287,7 @@ a.button {
 
 /* content */
 #content {
+  min-height: 625px;
   margin-bottom: 25px;
 }
 
