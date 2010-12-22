@@ -21,7 +21,6 @@ if (SpoonSession::exists('id') === false) {
 
 $recentDrinks = PublicApp::getRecentDrinks();
 $recentCheckins = PublicApp::getRecentCheckins();
-
 $recent = array_merge($recentDrinks, $recentCheckins);
 
 function compare_time($a, $b) {
@@ -39,6 +38,11 @@ $recent = $test;
 
 for ($i = 0; $i < sizeof($recent); $i++) {
     $recent[$i]['timestamp'] = SpoonDate::getTimeAgo(strtotime($recent[$i]['timestamp']));
+
+    if(!$recent[$i]['fb_uid']){
+        //else, use standard fb icon
+        $recent[$i]['fb_uid'] = 1;
+    }
 }
 
 if ($recent !== null) {

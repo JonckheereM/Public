@@ -18,11 +18,16 @@
         <p id="finding">Finding your location: <span id="status">Locating...</span></p>
     </article>
 
+    {option:oPubs}
     <ul data-role="listview" data-filter="true" data-theme="c">
         {iteration:iPubs}
         <li><a href="pubDetail.php?id={$iPubs.pub_id}" rel="external">{$iPubs.name}</a> <span class="distance">{$iPubs.distance}</span></li>
         {/iteration:iPubs}
     </ul>
+    {/option:oPubs}
+    {option:oNoPubs}
+    <p>There are no pubs in your area.</p>
+    {/option:oNoPubs}
 
 
 </div><!-- /content -->

@@ -39,7 +39,9 @@ if($timeAgo > -6){
     $tpl->assign('name', $latestCheckIn->pub->name);
     $tpl->assign('people', $latestCheckIn->pub->getNumberPeople());
     $tpl->assign('checkins', $latestCheckIn->pub->getNumberCheckins());
-    $tpl->assign('iTabs', $latestCheckIn->getTabs());
+    $tabs = $latestCheckIn->getTabs();
+    if($tabs[0] !== null){$tpl->assign('iTabs', $tabs);$tpl->assign('oTabs', true);}
+    else{$tpl->assign('iTabs', array());$tpl->assign('oNoTabs', true);}
 }else{
     $tpl->assign('oNoCheckIn', true);
 }

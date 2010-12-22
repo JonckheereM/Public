@@ -16,7 +16,7 @@
     {option:oRecent}
     {iteration:iRecent}
     <div class="activity">
-        <img src="/../img/thumbs/{$iRecent.username}.jpg" alt="avatar {$iRecent.username}" width="32px" height="32px" />
+        <img src="https://graph.facebook.com/{$iRecent.fb_uid}/picture" alt="avatar {$iRecent.username}" width="32px" height="32px" />
         <p>{option:iRecent.drink_id}<span class="person"><a href="#" rel="external">{$iRecent.username}</a></span> just drank a <span class="drink"><a href="drinkDetail.php?id={$iRecent.drink_id}" rel="external">{$iRecent.drinkname}</a></span> in <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}" rel="external">{$iRecent.pubname}</a></span>{/option:iRecent.drink_id}
         {option:iRecent.checkin_id}<span class="person"><a href="#" rel="external">{$iRecent.username}</a></span> just arrived at <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}" rel="external">{$iRecent.pubname}</a></span>{/option:iRecent.checkin_id}
         <br /><span class="timespan">{$iRecent.timestamp}</span></p>

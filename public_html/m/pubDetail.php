@@ -39,6 +39,12 @@ $recent = CheckIn::getCheckinsByPubId($pub->pub_id);
 
 for ($i = 0; $i < sizeof($recent); $i++) {
     $recent[$i]['timestamp'] = SpoonDate::getTimeAgo(strtotime($recent[$i]['timestamp']));
+
+    //check if the user has a fb account authenticated
+    if(!$recent[$i]['fb_uid']){
+        //else, use standard fb icon
+        $recent[$i]['fb_uid'] = 1;
+    }
 }
 
 if ($recent !== null) {
@@ -50,8 +56,6 @@ else
 
 $tpl->assign('pub_id', $pub->pub_id);
 $tpl->assign('name', $pub->name);
-$tpl->assign('longitude', $pub->longitude);
-$tpl->assign('latitude', $pub->latitude);
 $tpl->assign('people', $pub->getNumberPeople());
 $tpl->assign('checkins', $pub->getNumberCheckins());
 

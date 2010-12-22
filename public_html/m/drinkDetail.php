@@ -38,6 +38,11 @@ $recent = $drink->getRecent();
 
 for ($i = 0; $i < sizeof($recent); $i++) {
     $recent[$i]['timestamp'] = SpoonDate::getTimeAgo(strtotime($recent[$i]['timestamp']));
+
+    if(!$recent[$i]['fb_uid']){
+        //else, use standard fb icon
+        $recent[$i]['fb_uid'] = 1;
+    }
 }
 
 
