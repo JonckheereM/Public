@@ -50,18 +50,22 @@ $tpl->assign('session', json_encode($session));
  * @joenmaes
  */
 
+if(SpoonSession::exists('public_uid')){
+    //show logout
+    $tpl->assign('oLogout', true);
+}
+
 //Content layout
 $tpl->assign('oNavPubs', true);
 
 $lat = SpoonFilter::getGetValue('lat', null, '');
 $long = SpoonFilter::getGetValue('long', null, '');
-
-
 $pubs = array();
 
 if ($lat !== "" && $long !== "") {
     $tpl->assign('latitude', $lat);
     $tpl->assign('longitude', $long);
+
     $pubs = Pub::getPubsByLocation($lat, $long);
     
     $abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

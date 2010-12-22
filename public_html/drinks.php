@@ -14,7 +14,12 @@
     
     
     //Content layout
-    
+    if(SpoonSession::exists('public_uid')){
+        //show logout
+        $tpl->assign('oLogout', true);
+    }
+
+
     // show the output
     $tpl->assign('content', $tpl->getContent('templates/drinks.tpl'));
     $tpl->display('templates/layout.tpl');

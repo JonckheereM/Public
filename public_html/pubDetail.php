@@ -15,6 +15,11 @@
     
     //Content layout
     $pub = new Pub(SpoonFilter::getGetValue('id', null, ''));
+
+    if(SpoonSession::exists('public_uid')){
+        //show logout
+        $tpl->assign('oLogout', true);
+    }
     
 
     if($pub->pub_id === null){

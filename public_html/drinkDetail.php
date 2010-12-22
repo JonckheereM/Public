@@ -14,6 +14,11 @@
     
     
     //Content layout
+
+    if(SpoonSession::exists('public_uid')){
+        //show logout
+        $tpl->assign('oLogout', true);
+    }
     
     $drink = new Drink(SpoonFilter::getGetValue('id', null, ''));
 
