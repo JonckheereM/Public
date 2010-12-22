@@ -121,25 +121,7 @@ class User extends PublicApp {
         return $this->user_id;
     }
 
-    /**
-     * Update this user object in the databank.
-     *
-     * @return	int	The number of affected rows.
-     */
-    function Update() {
-        $values = array(
-            'username' => $this->username,
-            'first_Name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'mail' => $this->mail,
-            'password' => $this->password,
-            'gender' => $this->gender,
-            'birth_date' => $this->birth_date,
-            'weight' => $this->weight,
-        );
-        //Update the databank
-        return PublicApp::getDB()->update('users', $values, 'user_id = ?', $this->user_id);
-    }
+    
 
     /**
      * Delete this user object in the databank.
@@ -150,7 +132,7 @@ class User extends PublicApp {
         //Update the databank
         return PublicApp::getDB()->delete('users', 'user_id = ?', $this->user_id);
     }
-
+    
     /**
      * Checks if there already exist a user with this username
      *
@@ -175,6 +157,40 @@ class User extends PublicApp {
             return $user;
         }
     }
+
+    /**
+     * Gets the top places from a user (read: the places where the user checks in the most)
+     *
+     * @param int $count The number of places you want to retrieve
+     */
+    public function GetTopPlaces($count)
+    {
+      return PublicApp::getDB()->getRecords('SELECT pubs.pub_id, pubs.name FROM pubs
+                                             INNER JOIN checkins on pubs.pub_id = checkins.pub_id
+                                             WHERE checkins.user_id = '.$this->user_id.' group by pubs.pub_id asc LIMIT' + $count);
+    }
+
+    /**
+     * Update this user object in the databank.
+     *
+     * @return	int	The number of affected rows.
+     */
+    function Update() {
+        $values = array(
+            'username' => $this->username,
+            'first_Name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'mail' => $this->mail,
+            'password' => $this->password,
+            'gender' => $this->gender,
+            'birth_date' => $this->birth_date,
+            'weight' => $this->weight,
+        );
+        //Update the databank
+        return PublicApp::getDB()->update('users', $values, 'user_id = ?', $this->user_id);
+    }
+
+    
 
 }
 
