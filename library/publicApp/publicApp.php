@@ -36,8 +36,8 @@ class PublicApp {
     public static function getDB() {
         // get it and return it
         try {
-            //return new SpoonDatabase('mysql', 'localhost', 'xqdchsmn_public', 'pRAcHU8Ajath7qa3', 'xqdchsmn_public');
-            return new SpoonDatabase('mysql', 'localhost', 'root', 'root', 'publicdb');
+            return new SpoonDatabase('mysql', 'localhost', 'xqdchsmn_public', 'pRAcHU8Ajath7qa3', 'xqdchsmn_public');
+            //return new SpoonDatabase('mysql', 'localhost', 'root', 'root', 'publicdb');
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -49,7 +49,7 @@ class PublicApp {
      * @return	array	All the activities.
      */
     public static function getRecentDrinks() {
-        return PublicApp::getDB()->getRecords('SELECT tabs.timestamp, tabs.drink_id, drinks.name as drinkname, pubs.pub_id, pubs.name as pubname, users.user_id, users.username FROM tabs
+        return PublicApp::getDB()->getRecords('SELECT tabs.timestamp, tabs.drink_id, drinks.name as drinkname, pubs.pub_id, pubs.name as pubname, users.user_id, users.username, users.fb_uid FROM tabs
                                                 INNER JOIN checkins on tabs.checkin_id = checkins.checkin_id
                                                 INNER JOIN users on checkins.user_id = users.user_id
                                                 INNER JOIN pubs on checkins.pub_id = pubs.pub_id
@@ -63,7 +63,7 @@ class PublicApp {
      * @return	array	All the activities.
      */
     public static function getRecentCheckins() {
-        return PublicApp::getDB()->getRecords('SELECT checkins.timestamp, checkins.checkin_id, pubs.pub_id, pubs.name AS pubname, users.user_id, users.username
+        return PublicApp::getDB()->getRecords('SELECT checkins.timestamp, checkins.checkin_id, pubs.pub_id, pubs.name AS pubname, users.user_id, users.username, users.fb_uid
                                                 FROM checkins
                                                 INNER JOIN users ON checkins.user_id = users.user_id
                                                 INNER JOIN pubs ON checkins.pub_id = pubs.pub_id
