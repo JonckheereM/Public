@@ -4,9 +4,9 @@
 
     <div data-role="navbar" data-grid="c">
         <ul>
-            <li><a rel="external" data-icon="grid" href="dashboard.php" class="ui-btn-active">Activity</a></li>
+            <li><a rel="external" data-icon="star" href="dashboard.php" class="ui-btn-active">Activity</a></li>
             <li><a rel="external" data-icon="grid" href="pubs.php">Pubs</a></li>
-            <li><a rel="external" data-icon="star" href="checkin.php">Current Pub</a></li>
+            <li><a rel="external" data-icon="check" href="checkin.php">Current Pub</a></li>
         </ul>
     </div><!-- /navbar -->
 </div><!-- /header -->

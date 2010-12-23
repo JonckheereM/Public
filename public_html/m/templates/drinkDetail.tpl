@@ -1,7 +1,14 @@
 <div data-role="header">
-    <a href="drinks.php" rel="external" data-icon="arrow-l">Back</a>
     <h1>pub<span id="lic">lic</span></h1>
     <a href="logout.php" rel="external" data-icon="delete" class="ui-btn-right">Logout</a>
+
+    <div data-role="navbar" data-grid="c">
+        <ul>
+            <li><a rel="external" data-icon="star" href="dashboard.php">Activity</a></li>
+            <li><a rel="external" data-icon="grid" href="pubs.php">Pubs</a></li>
+            <li><a rel="external" data-icon="check" href="checkin.php">Current Pub</a></li>
+        </ul>
+    </div><!-- /navbar -->
 </div><!-- /header -->
 
 <div data-role="content">

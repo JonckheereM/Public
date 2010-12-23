@@ -7,7 +7,7 @@
 <div data-role="content">
     <ul data-role="listview" data-filter="true" data-theme="c">
         {iteration:iDrinks}
-            <li><a href="drinkDetail.php?id={$iDrinks.drink_id}" rel="external">{$iDrinks.name}</a></li>
+            <li><a href="drinkDetail.php?id={$iDrinks.drink_id}">{$iDrinks.name}</a></li>
         {/iteration:iDrinks}
     </ul>
 </div><!-- /content -->
