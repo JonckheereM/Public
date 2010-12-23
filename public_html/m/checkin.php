@@ -50,7 +50,7 @@ $timeAgo = SpoonDate::getDate("H:i:s") - (SpoonDate::getDate("H:i:s", strtotime(
 
 $user = new User(SpoonSession::exists('id'));
 if($user->weight !== null && $user->gender !== null){
-    if($daysAgo >= 1)$timeAgo = ($daysAgo*12)-$timeAgo;
+    if($daysAgo > 0)$timeAgo = ($daysAgo*12)-$timeAgo;
     $drinks = $latestCheckIn->getNumberTabs();
     $isLegal = $user->isLegalToDrive((int)$drinks["count"], $timeAgo);
     if($isLegal)$tpl->assign('oLegalToDrive', true);
