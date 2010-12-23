@@ -31,49 +31,12 @@
          $tpl->assign('lastPubId', $lastPub['pub_id']);
          $tpl->assign('lastDate', SpoonDate::getTimeAgo(strtotime($lastChecking['timestamp'])));
 
-         /*code max*/
-         $recentDrinks = PublicApp::getRecentUserDrinks(10);
-        $recentCheckins = PublicApp::getRecentUserCheckins(10);
-
-        $recent = array_merge($recentDrinks, $recentCheckins);
-
-        function compare_time($a, $b) {
-            return strnatcmp($b['timestamp'], $a['timestamp']);
-        }
-
-        usort($recent, 'compare_time');
-        $test = array();
-        for ($i = 0; $i<100 ; $i++){
-            if($recent[$i] !== null)$test[] = $recent[$i];
-        }
-
-        $recent = $test;
-
-        for ($i = 0; $i < sizeof($recent); $i++) {
-            $recent[$i]['timestamp'] = SpoonDate::getTimeAgo(strtotime($recent[$i]['timestamp']));
-
-            //check if the user has a fb account authenticated
-            if(!$recent[$i]['fb_uid']){
-                //else, use standard fb icon
-                $recent[$i]['fb_uid'] = 1;
-            }
-        }
-
-        if ($recent !== null) {
-            //$tpl->assign('oRecent', true);
-            $tpl->assign('iRecent', $recent);
-        }
-        //else
-            //$tpl->assign('oNoRecent', true);
-         /*end code max*/
-
-
     }else{ //GTFO!!!
         SpoonHTTP::redirect('index.php');
     }
 
     // show the output
-    $tpl->assign('content', $tpl->getContent('templates/dashboardHistory.tpl'));
+    $tpl->assign('content', $tpl->getContent('templates/dashboardStats.tpl'));
     $tpl->display('templates/layout.tpl');
 
 ?>
