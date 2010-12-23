@@ -103,3 +103,19 @@
     float:left;
     width: 160px;
 }
+#legalToDrive, #notLegalToDrive, #notAbleLegalToDrive{
+    -moz-border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    margin-top: 0;
+    text-shadow: 0 0 0;
+}
+#legalToDrive{
+    background: #0BCF00;
+}
+#notLegalToDrive{
+    background: #CF0000;
+}
+#notAbleLegalToDrive{
+    background: #FFFBCF;
+}

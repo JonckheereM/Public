@@ -163,7 +163,7 @@ class CheckIn {
      */
     public static function getLatestCheckinByUserId($id) {
         $c = PublicApp::getDB()->getRecord('SELECT * FROM checkins
-                                            WHERE DATEDIFF( timestamp, now( ) )=0 and checkins.user_id = ' . $id . ' order by checkin_id desc LIMIT 1');
+                                            WHERE checkins.user_id = ' . $id . ' order by checkin_id desc LIMIT 1');
 
         $checkin = new CheckIn('');
         $checkin->checkin_id = $c["checkin_id"];
@@ -175,7 +175,7 @@ class CheckIn {
     }
 
     /**
-     * Gets the top checkins with a specific pub.
+     * Gets the tabs of the checkin.
      *
      * @return	Checkin	The latest checkin of a user.
      */
@@ -184,7 +184,15 @@ class CheckIn {
                                                 INNER JOIN drinks on tabs.drink_id = drinks.drink_id
                                                 WHERE checkin_id = ' . $this->checkin_id.' group by drinks.drink_id');
     }
-
+    /**
+     * Gets the number of drinks.
+     *
+     * @return	Checkin	The latest checkin of a user.
+     */
+    public function getNumberTabs() {
+        return PublicApp::getDB()->getRecord('SELECT count(drink_id) as count FROM tabs
+                                                WHERE checkin_id = ' . $this->checkin_id);
+    }
 }
 
 ?>

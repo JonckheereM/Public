@@ -12,6 +12,9 @@
 </div><!-- /header -->
 
 <div data-role="content">
+    {option:oLegalToDrive}<p id="legalToDrive">It is ok to drive!</p>{/option:oLegalToDrive}
+    {option:oNotLegalToDrive}<p id="notLegalToDrive">It is NOT ok to drive!</p>{/option:oNotLegalToDrive}
+    {option:oNotAbleLegalToDrive}<p id="notAbleLegalToDrive">Please fill in your weight and gender to see if it is legal to drive.</p>{/option:oNotAbleLegalToDrive}
     {option:oCheckIn}
     <div id="pub-information">
         <div id="basic">
@@ -31,6 +34,7 @@
 
     <a href="drinks.php"data-role="button" data-theme="b" rel="external">Add Drink!</a>
 
+    
     <h4>You have drunk:</h4>
 
 

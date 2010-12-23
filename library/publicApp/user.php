@@ -127,8 +127,6 @@ class User extends PublicApp {
         return $this->user_id;
     }
 
-    
-
     /**
      * Delete this user object in the databank.
      *
@@ -138,7 +136,7 @@ class User extends PublicApp {
         //Update the databank
         return PublicApp::getDB()->delete('users', 'user_id = ?', $this->user_id);
     }
-    
+
     /**
      * Checks if there already exist a user with this username
      *
@@ -170,11 +168,10 @@ class User extends PublicApp {
      *
      * @param int $count The number of places you want to retrieve
      */
-    public function GetTopPubs($count)
-    {
-      return PublicApp::getDB()->getRecords('SELECT pubs.pub_id, pubs.name, count(checkins.pub_id) as count FROM pubs
+    public function GetTopPubs($count) {
+        return PublicApp::getDB()->getRecords('SELECT pubs.pub_id, pubs.name, count(checkins.pub_id) as count FROM pubs
                                              INNER JOIN checkins on pubs.pub_id = checkins.pub_id
-                                             WHERE checkins.user_id = '.$this->user_id.' group by pubs.pub_id asc LIMIT '.$count);
+                                             WHERE checkins.user_id = ' . $this->user_id . ' group by pubs.pub_id asc LIMIT ' . $count);
     }
 
     /**
@@ -198,7 +195,27 @@ class User extends PublicApp {
         return PublicApp::getDB()->update('users', $values, 'user_id = ?', $this->user_id);
     }
 
-    
+    /**
+     * Calculates if the user is legal to drive or not.
+     *
+     * @param int $glasses  The number glasses.
+     * @param int $hours    Hours from the first glass
+     */
+    public function isLegalToDrive($glasses, $hours) {
+        $gender;
+
+        if ($this->gender === 1) {
+            $gender = 0.7;
+        } else {
+            $gender = 0.5;
+        }
+        if($hours === 0)$hours = 1;
+
+        $BAG = ($glasses * 10) / ($this->weight * $gender) - ($hours - 0.5) * ($this->weight * 0.002);
+
+        if($BAG <= 0.5)return true;
+        else return false;
+    }
 
 }
 
