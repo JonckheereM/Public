@@ -21,6 +21,7 @@ if (SpoonSession::exists('id') === false) {
 
 $latestCheckIn = CheckIn::getLatestCheckinByUserId(SpoonSession::get('id'));
 
+$daysAgo = (SpoonDate::getDate("m.d.j") - (SpoonDate::getDate("m.d.j", strtotime($latestCheckIn->timestamp)))) * 100;
 $timeAgo = SpoonDate::getDate("H:i:s") - (SpoonDate::getDate("H:i:s", strtotime($latestCheckIn->timestamp)));
 
 //If the checkin is within 5 hours
@@ -49,6 +50,7 @@ $timeAgo = SpoonDate::getDate("H:i:s") - (SpoonDate::getDate("H:i:s", strtotime(
 
 $user = new User(SpoonSession::exists('id'));
 if($user->weight !== null && $user->gender !== null){
+    if($daysAgo >= 1)$timeAgo = ($daysAgo*12)-$timeAgo;
     $drinks = $latestCheckIn->getNumberTabs();
     $isLegal = $user->isLegalToDrive((int)$drinks["count"], $timeAgo);
     if($isLegal)$tpl->assign('oLegalToDrive', true);
