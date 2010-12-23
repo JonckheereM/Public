@@ -369,7 +369,7 @@ a.button {
   margin-left: 500px;
 }
 
-#content #drink-detail {
+#content #drink-detail, #user-detail {
   margin-left: 500px;
 }
 
@@ -383,7 +383,7 @@ a.button {
   -moz-border-radius: 10px;
 }
 
-#content #drink-information {
+#content #drink-information, #user-information {
   padding: 10px;
   height: 110px;
   width: 360px;
@@ -393,7 +393,7 @@ a.button {
   -moz-border-radius: 10px;
 }
 
-#content #drink-information img {
+#content #drink-information img, #user-information img {
   float: left;
   margin-right: 15px;
 }
@@ -405,9 +405,12 @@ a.button {
   width: 155px;
 }
 
-#content #drink-detail h3 {
+#content #drink-detail h3, #user-detail h3 {
   font-size: 20px;
   color: #454545;
+}
+#user-detail h3 {
+  margin-bottom: 20px;
 }
 
 #content #pub-detail #basic {

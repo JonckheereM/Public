@@ -65,6 +65,10 @@ class User extends PublicApp {
      */
     public $weight;
     /**
+     * The facebook user id of the user
+     */
+    public $fb_uid;
+    /**
      * The friends of the user
      *
      * @var	array
@@ -89,6 +93,7 @@ class User extends PublicApp {
             $this->gender = $var['gender'];
             $this->birth_date = $var['birth_date'];
             $this->weight = $var['weight'];
+            $this->fb_uid = $var['fb_uid'];
 
             //Get the friends and put them in the friends array
             $var = PublicApp::getDB()->getRecords('SELECT * FROM friends WHERE user_id = ?', $id);
@@ -115,6 +120,7 @@ class User extends PublicApp {
             'gender' => $this->gender,
             'birth_date' => $this->birth_date,
             'weight' => $this->weight,
+            'fb_uid' => $this->fb_uid
         );
         //Adds to the databank
         $this->user_id = PublicApp::getDB()->insert('users', $values);
@@ -151,6 +157,7 @@ class User extends PublicApp {
         $user->gender = $var['gender'];
         $user->birth_date = $var['birth_date'];
         $user->weight = $var['weight'];
+        $user->fb_uid = $var['fb_uid'];
         if ($var === null) {
             return false;
         } else {
@@ -163,11 +170,11 @@ class User extends PublicApp {
      *
      * @param int $count The number of places you want to retrieve
      */
-    public function GetTopPlaces($count)
+    public function GetTopPubs($count)
     {
-      return PublicApp::getDB()->getRecords('SELECT pubs.pub_id, pubs.name FROM pubs
+      return PublicApp::getDB()->getRecords('SELECT pubs.pub_id, pubs.name, count(checkins.pub_id) as count FROM pubs
                                              INNER JOIN checkins on pubs.pub_id = checkins.pub_id
-                                             WHERE checkins.user_id = '.$this->user_id.' group by pubs.pub_id asc LIMIT' + $count);
+                                             WHERE checkins.user_id = '.$this->user_id.' group by pubs.pub_id asc LIMIT '.$count);
     }
 
     /**
@@ -185,6 +192,7 @@ class User extends PublicApp {
             'gender' => $this->gender,
             'birth_date' => $this->birth_date,
             'weight' => $this->weight,
+            'fb_uid' => $this->fb_uid
         );
         //Update the databank
         return PublicApp::getDB()->update('users', $values, 'user_id = ?', $this->user_id);
