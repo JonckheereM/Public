@@ -8,8 +8,8 @@ RewriteBase /
 RewriteRule ^pubs/?$ ./pubs.php
 RewriteRule ^pubs/(\d+)/?$ ./pubDetail.php?id=$1
 RewriteRule ^drinks/(\d+)/?$ ./drinkDetail.php?id=$1
-RewriteRule ^users/(\d+)?/$ ./userDetail.php?id=$1
-RewriteRule ^search/(.*)$ ./search.php?query=$1
+RewriteRule ^users/(\d+)/?$ ./userDetail.php?id=$1
+RewriteRule ^search/(.*)/?$ ./search.php?query=$1
 
 
 
