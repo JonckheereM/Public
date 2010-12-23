@@ -267,6 +267,19 @@ a.button {
   background-color: #f6eee4;
 }
 
+#quick-menu #subnavigation li{
+    float:left;
+    margin-right:10px;
+}
+
+#quick-menu #subnavigation .active{
+    font-weight: bold;
+}
+
+#quick-menu #subnavigation li a:hover{
+    text-decoration: none;
+}
+
 #quick-menu form {
   margin-left: 680px;
 }
