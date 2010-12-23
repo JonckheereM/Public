@@ -86,6 +86,28 @@ if ($lat !== "" && $long !== "") {
 if($pubs !== null){$tpl->assign('iPubs', $pubs);}
 else{$tpl->assign('iPubs', array());}
 
+$tpl->assign('intoHead', '<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script>
+        $(document).ready(function() {
+            var longitude = {$longitude};
+            var latitude = {$latitude};
+
+            //Reverse Geocoding (Address Lookup)
+            var geocoder = new google.maps.Geocoder();
+
+            var latlng = new google.maps.LatLng(latitude, longitude);
+            geocoder.geocode({"latLng": latlng}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        document.querySelector(".loc").innerHTML = results[0].formatted_address;
+                    }
+                } else {
+                    alert("Geocoder failed due to: " + status);
+                }
+            });
+        });
+    </script>');
+
 // show the output
 $tpl->assign('content', $tpl->getContent('templates/pubs.tpl'));
 $tpl->display('templates/layout.tpl');

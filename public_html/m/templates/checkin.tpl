@@ -19,7 +19,7 @@
     <div id="pub-information">
         <div id="basic">
             <h3>{$name}</h3>
-            <span class="city">Ghent TODO</span>
+            <span class="city">Unknown</span>
         </div>
 
         <div class="people">
@@ -29,6 +29,26 @@
             <span class="number">{$checkins}</span> checkins
         </div>
         <div class="clear"></div>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script>
+            var longitude = {$longitude};
+            var latitude = {$latitude};
+
+            //Reverse Geocoding (Address Lookup)
+            var geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(latitude, longitude);
+
+            geocoder.geocode({'latLng': latlng}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+
+                        document.querySelector('.city').innerHTML = results[2].formatted_address;
+                    }
+                } else {
+                    alert("Geocoder failed due to: " + status);
+                }
+            });
+        </script>
 
     </div>
 

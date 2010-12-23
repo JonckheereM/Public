@@ -38,6 +38,8 @@ $timeAgo = SpoonDate::getDate("H:i:s") - (SpoonDate::getDate("H:i:s", strtotime(
 
     $tpl->assign('pub_id', $latestCheckIn->pub->pub_id);
     $tpl->assign('name', $latestCheckIn->pub->name);
+    $tpl->assign('longitude', $latestCheckIn->pub->longitude);
+    $tpl->assign('latitude', $latestCheckIn->pub->latitude);
     $tpl->assign('people', $latestCheckIn->pub->getNumberPeople());
     $tpl->assign('checkins', $latestCheckIn->pub->getNumberCheckins());
     $tabs = $latestCheckIn->getTabs();
