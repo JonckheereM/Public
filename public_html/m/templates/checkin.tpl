@@ -12,9 +12,9 @@
 </div><!-- /header -->
 
 <div data-role="content">
-    {option:oLegalToDrive}<p id="legalToDrive">It is ok to drive!</p>{/option:oLegalToDrive}
-    {option:oNotLegalToDrive}<p id="notLegalToDrive">It is NOT ok to drive!</p>{/option:oNotLegalToDrive}
-    {option:oNotAbleLegalToDrive}<p id="notAbleLegalToDrive">Please fill in your weight and gender to see if it is legal to drive.</p>{/option:oNotAbleLegalToDrive}
+    {option:oLegalToDrive}<p id="legalToDrive">It is ok to drive! *</p>{/option:oLegalToDrive}
+    {option:oNotLegalToDrive}<p id="notLegalToDrive">It is NOT ok to drive! *</p>{/option:oNotLegalToDrive}
+    {option:oNotAbleLegalToDrive}<p id="notAbleLegalToDrive">Please fill in your weight and gender to see if it is legal to drive. *</p>{/option:oNotAbleLegalToDrive}
     {option:oCheckIn}
     <div id="pub-information">
         <div id="basic">
@@ -59,6 +59,8 @@
     {option:oNoCheckIn}
     <p>You don't have an active check in.</p>
     {/option:oNoCheckIn}
+
+    <p>* We are not responsible for accidents. This is just an indication.</p>
 
 </div><!-- /content -->
 
