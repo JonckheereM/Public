@@ -87,7 +87,7 @@
 
       <div id="footer" class="fluid">
         <div class="container">
-          <p>&copy; public &mdash; created by <a href="http://www.twitter.com/mmmphs">@mmmphs</a>, <a href="http://www.twitter.com/Jonckheere_M">@jonckheere_M</a>, <a href="http://www.twitter.com/joenmaes">@joenmaes</a> and a huge amount of alcohol</p>
+          <p>&copy; <a href="http://www.twitter.com/publicapp">public</a> &mdash; created by <a href="http://www.twitter.com/mmmphs">@mmmphs</a>, <a href="http://www.twitter.com/Jonckheere_M">@jonckheere_M</a>, <a href="http://www.twitter.com/joenmaes">@joenmaes</a> and a huge amount of alcohol</p>
         </div>
       </div>
     </div>

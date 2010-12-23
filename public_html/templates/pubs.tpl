@@ -15,6 +15,17 @@
     </div>
 </div>
 
+<script src="https://www.google.com/jsapi?key=ABQIAAAAjClSPIOxNBGxBX4-wq0z2RR75ioQX0VOMPX_acNpIAmoM0SKwBTs1bZPV2MDQ-Ye-OpLfVC0J89Isw" type="text/javascript"></script>
+<script type="text/javascript">
+  google.load("jquery", "1");
+</script>
+<script type="text/javascript" src="/js/quickpager.jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("ul.paging").quickPager();
+});
+</script>
+
 <div id="content" class="fluid">
     <div class="container">
         <h2>List of pubs</h2>
@@ -112,29 +123,20 @@
                 <img src="http://www.google.com/mapfiles/arrow.png" alt="map icon A" width="22px" height="36px" />
                 <h3>Your location</h3>
             </div>
-            {iteration:iPubs}
-            <div class="pub">
-                <img src="http://www.google.com/mapfiles/marker{$iPubs.letter}.png" alt="map icon {$iPubs.letter}" width="22px" height="36px" />
-                <h3><a href="pubDetail.php?id={$iPubs.pub_id}">{$iPubs.name}</a></h3>
-                <p>
-                    <span class="people"><span class="number">{$iPubs.people}</span> people</span>
-                    <span class="checkins"><span class="number">{$iPubs.checkins}</span> checkins</span>
-                </p>
-            </div>
-            {/iteration:iPubs}
-
-            <p class="pager">
-                <a href="#">&lt;</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <span class="current">3</span>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <span>&hellip;</span>
-                <a href="#">10</a>
-                <a href="#">&gt;</a>
-            </p>
+            <ul class="paging">
+                {iteration:iPubs}
+                    <li>
+                        <div class="pub">
+                            <img src="http://www.google.com/mapfiles/marker{$iPubs.letter}.png" alt="map icon {$iPubs.letter}" width="22px" height="36px" />
+                            <h3><a href="pubDetail.php?id={$iPubs.pub_id}">{$iPubs.name}</a></h3>
+                            <p>
+                                <span class="people"><span class="number">{$iPubs.people}</span> people</span>
+                                <span class="checkins"><span class="number">{$iPubs.checkins}</span> checkins</span>
+                            </p>
+                        </div>
+                    </li>
+                {/iteration:iPubs}
+            </ul>
         </div>
     </div>
 </div>

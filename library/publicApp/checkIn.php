@@ -142,7 +142,7 @@ class CheckIn {
         return PublicApp::getDB()->getRecords('SELECT checkins.timestamp, users.user_id, users.username, users.fb_uid, pubs.pub_id, pubs.name as pubname FROM checkins
                                                 INNER JOIN users on checkins.user_id = users.user_id
                                                 INNER JOIN pubs on checkins.pub_id = pubs.pub_id
-                                                WHERE checkins.pub_id = ' . $id . ' order by checkins.timestamp desc LIMIT 10');
+                                                WHERE checkins.pub_id = ' . $id . ' order by checkins.timestamp desc LIMIT 100');
     }
 
     /**
