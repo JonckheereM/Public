@@ -34,6 +34,7 @@
         if(!$recent[$i]['fb_uid']){
             //else, use standard fb icon
             $recent[$i]['fb_uid'] = 1;
+            $user->fb_uid = 1;
         }
     }
 

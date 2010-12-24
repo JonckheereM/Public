@@ -32,12 +32,12 @@ $recent = $user->getRecentUserDrinks($user->user_id);
 for ($i = 0; $i < sizeof($recent); $i++) {
     $recent[$i]['timestamp'] = SpoonDate::getTimeAgo(strtotime($recent[$i]['timestamp']));
 
-    if(!$recent[$i]['fb_uid']){
+    if (!$recent[$i]['fb_uid']) {
         //else, use standard fb icon
         $recent[$i]['fb_uid'] = 1;
+        $user->fb_uid = 1;
     }
 }
-
 
 
 if ($recent !== null) {
@@ -47,13 +47,6 @@ if ($recent !== null) {
 else
     $tpl->assign('oNoRecent', true);
 
-
-
-if($recent !== null){
-        $tpl->assign('oRecent', true);
-        $tpl->assign('iRecent', $recent);
-    }
-    else $tpl->assign('oNoRecent', true);
 
 $tpl->assign('user_id', $user->user_id);
 $tpl->assign('username', $user->username);
