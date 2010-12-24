@@ -86,6 +86,27 @@
     font-size: 20px;
 }
 
+/* User detail */
+
+#user-information {
+    -moz-border-radius: 10px;
+    background-color: #EFEFEF;
+    height: 70px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+#user-information img {
+    float: left;
+    margin-right: 15px;
+}
+#user-detail h3 {
+    color: #454545;
+    font-size: 20px;
+}
+
+
+
 /* Check in*/
 #checkinTabs{
     padding-left: 0;
