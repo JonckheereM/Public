@@ -43,7 +43,7 @@
 
         usort($recent, 'compare_time');
         $test = array();
-        for ($i = 0; $i<10 ; $i++){
+        for ($i = 0; $i<100 ; $i++){
             if($recent[$i] !== null)$test[] = $recent[$i];
         }
 

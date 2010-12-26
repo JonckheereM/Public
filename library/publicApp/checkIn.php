@@ -139,10 +139,10 @@ class CheckIn {
      * @return	array	All the drinks.
      */
     public static function getCheckinsByPubId($id) {
-        return PublicApp::getDB()->getRecords('SELECT checkins.timestamp, users.user_id, users.username, pubs.pub_id, pubs.name as pubname FROM checkins
+        return PublicApp::getDB()->getRecords('SELECT checkins.timestamp, users.user_id, users.username, users.fb_uid, pubs.pub_id, pubs.name as pubname FROM checkins
                                                 INNER JOIN users on checkins.user_id = users.user_id
                                                 INNER JOIN pubs on checkins.pub_id = pubs.pub_id
-                                                WHERE checkins.pub_id = ' . $id . ' order by checkins.timestamp desc LIMIT 10');
+                                                WHERE checkins.pub_id = ' . $id . ' order by checkins.timestamp desc LIMIT 100');
     }
 
     /**
@@ -163,7 +163,7 @@ class CheckIn {
      */
     public static function getLatestCheckinByUserId($id) {
         $c = PublicApp::getDB()->getRecord('SELECT * FROM checkins
-                                            WHERE DATEDIFF( timestamp, now( ) )=0 and checkins.user_id = ' . $id . ' order by checkin_id desc LIMIT 1');
+                                            WHERE checkins.user_id = ' . $id . ' order by checkin_id desc LIMIT 1');
 
         $checkin = new CheckIn('');
         $checkin->checkin_id = $c["checkin_id"];
@@ -175,7 +175,7 @@ class CheckIn {
     }
 
     /**
-     * Gets the top checkins with a specific pub.
+     * Gets the tabs of the checkin.
      *
      * @return	Checkin	The latest checkin of a user.
      */
@@ -184,7 +184,15 @@ class CheckIn {
                                                 INNER JOIN drinks on tabs.drink_id = drinks.drink_id
                                                 WHERE checkin_id = ' . $this->checkin_id.' group by drinks.drink_id');
     }
-
+    /**
+     * Gets the number of drinks.
+     *
+     * @return	Checkin	The latest checkin of a user.
+     */
+    public function getNumberTabs() {
+        return PublicApp::getDB()->getRecord('SELECT count(drink_id) as count FROM tabs
+                                                WHERE checkin_id = ' . $this->checkin_id);
+    }
 }
 
 ?>

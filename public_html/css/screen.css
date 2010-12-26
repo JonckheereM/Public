@@ -267,6 +267,19 @@ a.button {
   background-color: #f6eee4;
 }
 
+#quick-menu #subnavigation li{
+    float:left;
+    margin-right:10px;
+}
+
+#quick-menu #subnavigation .active{
+    font-weight: bold;
+}
+
+#quick-menu #subnavigation li a:hover{
+    text-decoration: none;
+}
+
 #quick-menu form {
   margin-left: 680px;
 }
@@ -462,4 +475,34 @@ a.button {
 }
 
 
-
+/*working paginator*/
+ul.simplePagerNav li{
+    display:block;
+    floaT: left;
+    padding: 3px;
+    margin-bottom: 10px;
+    font-family: georgia;
+}
+ul.simplePagerNav li a{
+    color: #333;
+    text-decoration: none;
+}
+li.currentPage {
+	background: red;
+        background: #gray;
+}
+ul.simplePagerNav li.currentPage a {
+	color: #fff;
+}
+table.pageme {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+table.pageme td {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+ul.paging  li.sticky {
+	background-color: red !important;
+	display: block !important
+}

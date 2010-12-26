@@ -97,11 +97,11 @@ class Drink {
      * @return	array	All the drinks.
      */
     function getRecent() {
-        return PublicApp::getDB()->getRecords('SELECT tabs.timestamp, tabs.drink_id, pubs.pub_id, users.user_id, users.username, pubs.name as pubname FROM tabs
+        return PublicApp::getDB()->getRecords('SELECT tabs.timestamp, tabs.drink_id, pubs.pub_id, users.user_id, users.fb_uid, users.username, pubs.name as pubname FROM tabs
                                                 INNER JOIN checkins on tabs.checkin_id = checkins.checkin_id
                                                 INNER JOIN users on checkins.user_id = users.user_id
                                                 INNER JOIN pubs on checkins.pub_id = pubs.pub_id
-                                                WHERE tabs.drink_id = '.$this->drink_id.' order by tabs.timestamp desc LIMIT 10');
+                                                WHERE tabs.drink_id = '.$this->drink_id.' order by tabs.timestamp desc LIMIT 100');
     }
 
     /**

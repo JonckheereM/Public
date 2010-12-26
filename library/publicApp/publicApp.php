@@ -36,8 +36,8 @@ class PublicApp {
     public static function getDB() {
         // get it and return it
         try {
-            return new SpoonDatabase('mysql', 'localhost', 'xqdchsmn_public', 'pRAcHU8Ajath7qa3', 'xqdchsmn_public');
-            //return new SpoonDatabase('mysql', 'localhost', 'root', 'root', 'publicdb');
+            //return new SpoonDatabase('mysql', 'localhost', 'xqdchsmn_public', 'pRAcHU8Ajath7qa3', 'xqdchsmn_public');
+            return new SpoonDatabase('mysql', 'localhost', 'root', 'root', 'xqdchsmn_public');
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

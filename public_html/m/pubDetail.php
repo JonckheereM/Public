@@ -101,6 +101,8 @@ if ($recent !== null) {
 else
     $tpl->assign('oNoRecent', true);
 
+$tpl->assign('longitude', $pub->longitude);
+$tpl->assign('latitude', $pub->latitude);
 $tpl->assign('pub_id', $pub->pub_id);
 $tpl->assign('name', $pub->name);
 $tpl->assign('people', $pub->getNumberPeople());

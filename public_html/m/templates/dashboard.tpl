@@ -4,9 +4,9 @@
 
     <div data-role="navbar" data-grid="c">
         <ul>
-            <li><a rel="external" data-icon="grid" href="dashboard.php" class="ui-btn-active">Activity</a></li>
+            <li><a rel="external" data-icon="star" href="dashboard.php" class="ui-btn-active">Activity</a></li>
             <li><a rel="external" data-icon="grid" href="pubs.php">Pubs</a></li>
-            <li><a rel="external" data-icon="star" href="checkin.php">Current Pub</a></li>
+            <li><a rel="external" data-icon="check" href="checkin.php">Current Pub</a></li>
         </ul>
     </div><!-- /navbar -->
 </div><!-- /header -->
@@ -17,8 +17,8 @@
     {iteration:iRecent}
     <div class="activity">
         <img src="https://graph.facebook.com/{$iRecent.fb_uid}/picture" alt="avatar {$iRecent.username}" width="32px" height="32px" />
-        <p>{option:iRecent.drink_id}<span class="person"><a href="#" rel="external">{$iRecent.username}</a></span> just drank a <span class="drink"><a href="drinkDetail.php?id={$iRecent.drink_id}" rel="external">{$iRecent.drinkname}</a></span> in <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}" rel="external">{$iRecent.pubname}</a></span>{/option:iRecent.drink_id}
-        {option:iRecent.checkin_id}<span class="person"><a href="#" rel="external">{$iRecent.username}</a></span> just arrived at <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}" rel="external">{$iRecent.pubname}</a></span>{/option:iRecent.checkin_id}
+        <p>{option:iRecent.drink_id}<span class="person"><a href="userDetail.php?id={$iRecent.user_id}" rel="external">{$iRecent.username}</a></span> just drank a <span class="drink"><a href="drinkDetail.php?id={$iRecent.drink_id}" rel="external">{$iRecent.drinkname}</a></span> in <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}" rel="external">{$iRecent.pubname}</a></span>{/option:iRecent.drink_id}
+        {option:iRecent.checkin_id}<span class="person"><a href="userDetail.php?id={$iRecent.user_id}" rel="external">{$iRecent.username}</a></span> just arrived at <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}" rel="external">{$iRecent.pubname}</a></span>{/option:iRecent.checkin_id}
         <br /><span class="timespan">{$iRecent.timestamp}</span></p>
     </div>
     {/iteration:iRecent}

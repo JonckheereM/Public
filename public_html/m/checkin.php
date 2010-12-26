@@ -21,10 +21,11 @@ if (SpoonSession::exists('id') === false) {
 
 $latestCheckIn = CheckIn::getLatestCheckinByUserId(SpoonSession::get('id'));
 
-$timeAgo = (SpoonDate::getDate("H:i:s", strtotime($latestCheckIn->timestamp)))- SpoonDate::getDate("H:i:s");
+$daysAgo = (SpoonDate::getDate("m.d.j") - (SpoonDate::getDate("m.d.j", strtotime($latestCheckIn->timestamp)))) * 100;
+$timeAgo = SpoonDate::getDate("H:i:s") - (SpoonDate::getDate("H:i:s", strtotime($latestCheckIn->timestamp)));
 
 //If the checkin is within 5 hours
-if($timeAgo > -6){
+//if($timeAgo > -6){
     $tpl->assign('oCheckIn', true);
 
     if(SpoonFilter::getGetValue('event', null, '') === 'plus'){
@@ -34,18 +35,29 @@ if($timeAgo > -6){
         $latestCheckIn->DeleteTab(SpoonFilter::getGetValue('drinkid', null, ''));
         SpoonHTTP::redirect('checkin.php');
     }
-    
+
     $tpl->assign('pub_id', $latestCheckIn->pub->pub_id);
     $tpl->assign('name', $latestCheckIn->pub->name);
+    $tpl->assign('longitude', $latestCheckIn->pub->longitude);
+    $tpl->assign('latitude', $latestCheckIn->pub->latitude);
     $tpl->assign('people', $latestCheckIn->pub->getNumberPeople());
     $tpl->assign('checkins', $latestCheckIn->pub->getNumberCheckins());
     $tabs = $latestCheckIn->getTabs();
     if($tabs[0] !== null){$tpl->assign('iTabs', $tabs);$tpl->assign('oTabs', true);}
     else{$tpl->assign('iTabs', array());$tpl->assign('oNoTabs', true);}
-}else{
-    $tpl->assign('oNoCheckIn', true);
-}
+//}else{
+//    $tpl->assign('oNoCheckIn', true);
+//}
 
+
+$user = new User(SpoonSession::exists('id'));
+if($user->weight !== null && $user->gender !== null){
+    if($daysAgo > 0)$timeAgo = ($daysAgo*12)-$timeAgo;
+    $drinks = $latestCheckIn->getNumberTabs();
+    $isLegal = $user->isLegalToDrive((int)$drinks["count"], $timeAgo);
+    if($isLegal)$tpl->assign('oLegalToDrive', true);
+    else $tpl->assign('oNotLegalToDrive', true);
+}else $tpl->assign('oNotAbleLegalToDrive', true);
 
 
 

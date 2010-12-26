@@ -49,15 +49,7 @@
             {/option:oRecent}
             {option:oNoRecent}
             <p>No recent activities.</p>
-            {/option:oNoRecent}
-            <!--<div class="activity">
-                <img src="img/thumbs/mmphs.jpg" alt="avatar mmphs" width="32px" height="32px" />
-                <p><span class="person"><a href="#">mmphs</a></span> just arrived at <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>
-            <div class="activity">
-                <img src="img/thumbs/joenmaes.jpg" alt="avatar joenmaes" width="32px" height="32px" />
-                <p><span class="person"><a href="#">joenmaes</a></span> just drank a <span class="drink"><a href="#">Duvel</a></span> in <span class="pub"><a href="#">Backdoor</a></span></p>
-            </div>-->
+            {/option:oNoRecent}            
         </div>
         <div id="location">
             <h2>Your location</h2>
