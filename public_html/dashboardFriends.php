@@ -18,18 +18,45 @@
         $tpl->assign('oNavMe', true);
 
         $uid = SpoonSession::get('public_uid');
-        $db = new SpoonDatabase('mysql', 'localhost', 'xqdchsmn_public', 'pRAcHU8Ajath7qa3', 'xqdchsmn_public');
-        $user = $db->getRecord('SELECT * FROM users WHERE user_id = ?', $uid);
 
-         $tpl->assign('uname', $user['username']);
-         $tpl->assign('fbu', $user['fb_uid']);
+        $user = new User($uid);
 
-         $lastChecking = $db->getRecord('SELECT * FROM checkins WHERE user_id = ? ORDER BY timestamp DESC', $uid);
-         $lastPub = $db->getRecord('SELECT * FROM pubs WHERE pub_id = ?', $lastChecking['pub_id']);
+        if($user->GetFollowing() != null)
+        {
+          $values = $user->GetFollowing();
+          $following = array();
+          foreach($values as $value)
+          {
+            $user = new User($value['user_id']);
+            if($user->fb_uid == null) $user->fb_uid = 1;
+            array_push($following, get_object_vars($user));
+          }
+          $tpl->assign('oFollowing', true);
+          $tpl->assign('iFollowing', $following);
+        }
+        else
+        {
+          $tpl->assign('oNoFollowing', true);
+        }
 
-         $tpl->assign('lastPub', $lastPub['name']);
-         $tpl->assign('lastPubId', $lastPub['pub_id']);
-         $tpl->assign('lastDate', SpoonDate::getTimeAgo(strtotime($lastChecking['timestamp'])));
+        if($user->GetFollowers() != null)
+        {
+          $values = $user->GetFollowers();
+          $followers = array();
+          foreach($values as $value)
+          {
+            $user = new User($value['user_id']);
+            if($user->fb_uid == null) $user->fb_uid = 1;
+            array_push($followers, get_object_vars($user));
+          }
+          $tpl->assign('oFollowers', true);
+          $tpl->assign('iFollowers', $followers);
+        }
+        else
+        {
+          $tpl->assign('oNoFollowers', true);
+        }
+
 
     }else{ //GTFO!!!
         SpoonHTTP::redirect('index.php');

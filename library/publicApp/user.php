@@ -164,6 +164,40 @@ class User extends PublicApp {
     }
 
     /**
+     * Function to follow a user
+     *
+     * @param int the user_id of the user you want to follow
+     * @return bool if the insert didn't fail
+     */
+    public function follow($user_id)
+    {
+      $values = array(
+          'user_id' => $this->user_id,
+          'friend'  => $user_id
+      );
+      return PublicApp::getDb()->insert('friends', $values);
+    }
+
+    /**
+     * Get all the users that follow this one
+     * 
+     * @return the users that follow this one 
+     */
+    public function GetFollowers()
+    {
+      return PublicApp::getDB()->getRecords('SELECT user_id, friend FROM friends WHERE friend = ?', $this->user_id);
+    }
+
+    /**
+     * Get all the users that this one is following
+     *
+     * @return array the users that this one is following
+     */
+    public function GetFollowing()
+    {
+      return PublicApp::getDB()->getRecords('SELECT user_id, friend FROM friends WHERE user_id = ?', $this->user_id);
+    }
+    /**
      * Gets the top places from a user (read: the places where the user checks in the most)
      *
      * @param int $count The number of places you want to retrieve
@@ -175,24 +209,15 @@ class User extends PublicApp {
     }
 
     /**
-     * Update this user object in the databank.
      *
-     * @return	int	The number of affected rows.
+     * @param int the user_id to check if the logged in user is friends with
+     * @return bool if the users are friends or not
      */
-    function Update() {
-        $values = array(
-            'username' => $this->username,
-            'first_Name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'mail' => $this->mail,
-            'password' => $this->password,
-            'gender' => $this->gender,
-            'birth_date' => $this->birth_date,
-            'weight' => $this->weight,
-            'fb_uid' => $this->fb_uid
-        );
-        //Update the databank
-        return PublicApp::getDB()->update('users', $values, 'user_id = ?', $this->user_id);
+    public function isFriend($user_id)
+    {
+      $value = PublicApp::getDB()->getRecord('SELECT user_id, friend FROM friends WHERE user_id = '.$this->user_id.' AND friend = '.$user_id);
+      if($value != null) return true;
+      return false;
     }
 
     /**
@@ -217,6 +242,41 @@ class User extends PublicApp {
         else return false;
     }
 
+    /**
+     * Function to unfollow a user
+     *
+     * @param int the user_id of the user you want to unfollow
+     * @return bool if the delete didn't fail
+     */
+    public function unfollow($user_id)
+    {
+      $values = array(
+          'user_id' => $this->user_id,
+          'friend'  => $user_id
+      );
+      return PublicApp::getDB()->delete('friends', 'user_id = ? and friend = ?', array($this->user_id, $user_id));
+    }
+
+    /**
+     * Update this user object in the databank.
+     *
+     * @return	int	The number of affected rows.
+     */
+    function Update() {
+        $values = array(
+            'username' => $this->username,
+            'first_Name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'mail' => $this->mail,
+            'password' => $this->password,
+            'gender' => $this->gender,
+            'birth_date' => $this->birth_date,
+            'weight' => $this->weight,
+            'fb_uid' => $this->fb_uid
+        );
+        //Update the databank
+        return PublicApp::getDB()->update('users', $values, 'user_id = ?', $this->user_id);
+    }
 }
 
 ?>

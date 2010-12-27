@@ -81,8 +81,11 @@ ul.paging  li.sticky {
                 <p><img src="https://graph.facebook.com/{$fb_uid}/picture" alt="profilepicture" width="135px" height="104px" /></p>
                 <h3>{$name}</h3>
                 {option:oAddFriend}
-                <p><a href="#" class="button">Add as friend</a>
+                <p><a href="/users/{$user_id}/follow" class="button">Follow</a>
                 {/option:oAddFriend}
+                {option:oDeleteFriend}
+                <p><a href="/users/{$user_id}/unfollow" class="button">Unfollow</a>
+                {/option:oDeleteFriend}
             </div>
             <h2>Top pubs</h2>
             {option:oTopPubs}

@@ -9,6 +9,8 @@ RewriteRule ^pubs/?$ ./pubs.php
 RewriteRule ^pubs/(\d+)/?$ ./pubDetail.php?id=$1
 RewriteRule ^drinks/(\d+)/?$ ./drinkDetail.php?id=$1
 RewriteRule ^users/(\d+)/?$ ./userDetail.php?id=$1
+RewriteRule ^users/(\d+)/follow/?$ ./userDetail.php?id=$1&follow=true
+RewriteRule ^users/(\d+)/unfollow/?$ ./userDetail.php?id=$1&follow=false
 RewriteRule ^search/([a-zA-Z0-9]*)/?$ ./search.php?q=$1
 
 

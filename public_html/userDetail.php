@@ -50,13 +50,39 @@
         $tpl->assign('iTopPubs', $user->GetTopPubs(5));
     }else $tpl->assign('oNoTopPubs', true);
 
-    $tpl->assign('fb_uid', $user->fb_uid);
+    $tpl->assign('fb_uid',  $user->fb_uid);
     $tpl->assign('name',    $user->first_name.' '.$user->last_name);
+    $tpl->assign('user_id', $user->user_id);
 
     // if user is logged in and it's not his own profile show add as friend button
-    // todo: if already friended
-    if(SpoonSession::exists('public_uid') && SpoonSession::get('public_uid') != $user->user_id) $tpl->assign('oAddFriend', true);
-// show the output
+    if(SpoonSession::exists('public_uid') && SpoonSession::get('public_uid') != $user->user_id)
+    {
+      $loggedInUser = new User(SpoonSession::get('public_uid'), null, '');
+      if(!$loggedInUser->isFriend($user->user_id))
+      {
+        $tpl->assign('oAddFriend', true);
+      }
+      else
+      {
+        $tpl->assign('oDeleteFriend', true);
+      }
+    }
+
+    if(SpoonFilter::getGetValue('follow', null, '') == 'true')
+    {
+      $loggedInUser->follow($user->user_id);
+      SpoonHTTP::redirect('/users/'.$user->user_id);
+    }
+    if(SpoonFilter::getGetValue('follow', null, '') == 'false')
+    {
+      $loggedInUser->unfollow($user->user_id);
+      SpoonHTTP::redirect('/users/'.$user->user_id);
+    }
+
+    
+
+
+    // show the output
     $tpl->assign('content', $tpl->getContent('templates/userDetail.tpl'));
     $tpl->display('templates/layout.tpl');
 
