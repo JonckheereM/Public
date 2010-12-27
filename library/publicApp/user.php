@@ -93,15 +93,7 @@ class User extends PublicApp {
             $this->gender = $var['gender'];
             $this->birth_date = $var['birth_date'];
             $this->weight = $var['weight'];
-            $this->fb_uid = $var['fb_uid'];
-
-            //Get the friends and put them in the friends array
-            $var = PublicApp::getDB()->getRecords('SELECT * FROM friends WHERE user_id = ?', $id);
-            if ($var !== null) {
-                foreach ($var as $friend) {
-                    $this->friends[] = new User($friend['friend']);
-                }
-            }
+            $this->fb_uid = $var['fb_uid'];   
         }
     }
 
