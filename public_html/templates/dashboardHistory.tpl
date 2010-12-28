@@ -24,13 +24,15 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$("ul.paging").quickPager();
+$("ul.pagingg").quickPager();
 });
 </script>
 
 <div id="content" class="fluid">
     <div class="container">
-        <div id="recent-activity">
+        <div id="recent-activityDual">
         <h2>Check-in History</h2>
+        <div class="dualLeft">
         <h3>Here's a quick recap of all the places you've been.</h3>
 
         <ul class="paging">
@@ -39,12 +41,31 @@ $(document).ready(function() {
         <div class="activity">
             <img src="https://graph.facebook.com/{$iRecent.fb_uid}/picture" alt="profilepicture" width="32px" height="32px" />
             {option:iRecent.drink_id}<p><span class="person"><a href="#">{$iRecent.username}</a></span> just drank a <span class="drink"><a href="drinkDetail.php?id={$iRecent.drink_id}">{$iRecent.drinkname}</a></span> in <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}">{$iRecent.pubname}</a></span></p>{/option:iRecent.drink_id}
-            {option:iRecent.checkin_id}<p><span class="person"><a href="#">{$iRecent.username}</a></span> just arrived at <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}">Backdoor</a></span></p>{/option:iRecent.checkin_id}
+            {option:iRecent.checkin_id}<p><span class="person"><a href="#">{$iRecent.username}</a></span> just arrived at <span class="pub"><a href="pubDetail.php?id={$iRecent.pub_id}">{$iRecent.pubname}</a></span></p>{/option:iRecent.checkin_id}
             <p><span class="timespan">{$iRecent.timestamp}</span></p>
         </div>
         </li>
         {/iteration:iRecent}
         </ul>
         </div>
+
+        <div class="dualRight">
+        <h3>Here's a quick recap of all the drinks you've drunk.</h3>
+
+        <ul class="pagingg">
+        {iteration:iRecentt}
+        <li>
+        <div class="activity">
+            <img src="https://graph.facebook.com/{$iRecentt.fb_uid}/picture" alt="profilepicture" width="32px" height="32px" />
+            {option:iRecentt.drink_id}<p><span class="person"><a href="#">{$iRecentt.username}</a></span> just drank a <span class="drink"><a href="drinkDetail.php?id={$iRecentt.drink_id}">{$iRecentt.drinkname}</a></span> in <span class="pub"><a href="pubDetail.php?id={$iRecentt.pub_id}">{$iRecentt.pubname}</a></span></p>{/option:iRecentt.drink_id}
+            {option:iRecentt.checkin_id}<p><span class="person"><a href="#">{$iRecentt.username}</a></span> just arrived at <span class="pub"><a href="pubDetail.php?id={$iRecentt.pub_id}">Backdoor</a></span></p>{/option:iRecentt.checkin_id}
+            <p><span class="timespan">{$iRecentt.timestamp}</span></p>
+        </div>
+        </li>
+        {/iteration:iRecentt}
+        </ul>
+        </div>
+        </div>   
+        
     </div>
 </div>

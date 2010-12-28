@@ -75,7 +75,7 @@
       <legend>Login</legend>
       <form id="loginForm" action="login.php" method="post">
         <p>
-          <label for="email">Email</label>
+          <label for="email">Username/Email</label>
           <input type="text" name="email" id="email"/>
         </p>
         <p>

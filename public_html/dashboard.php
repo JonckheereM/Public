@@ -22,7 +22,13 @@
         $user = $db->getRecord('SELECT * FROM users WHERE user_id = ?', $uid);
 
          $tpl->assign('uname', $user['username']);
-         $tpl->assign('fbu', $user['fb_uid']);
+
+         if($user['fb_uid'] != null){
+             $tpl->assign('fbu', $user['fb_uid']);
+         }else{
+             $tpl->assign('fbu', 1);
+         }
+
 
          $lastChecking = $db->getRecord('SELECT * FROM checkins WHERE user_id = ? ORDER BY timestamp DESC', $uid);
          $lastPub = $db->getRecord('SELECT * FROM pubs WHERE pub_id = ?', $lastChecking['pub_id']);

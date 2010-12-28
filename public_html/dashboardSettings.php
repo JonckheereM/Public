@@ -25,7 +25,13 @@
 
         $user = $db->getRecord('SELECT * FROM users WHERE user_id = ?', $uid);
         //Spoon::dump($user);
-        $tpl->assign('fbu', $user['fb_uid']);
+
+        if($user['fb_uid'] != null){
+             $tpl->assign('fbu', $user['fb_uid']);
+         }else{
+             $tpl->assign('fbu', 1);
+         }
+
         $tpl->assign('uname', $user['username']);
         $tpl->assign('firstname', $user['first_name']);
         $tpl->assign('lastname', $user['last_name']);
@@ -39,7 +45,7 @@
         //$tpl->assign('password', $user['password']);
 
         if($user['fb_publish_stream']){
-            $tpl->assign('fbstatus', '<span style="color:green;">Authenticated</span>');
+            $tpl->assign('fbstatus', '<span style="color:green;" class="authd">Authenticated</span>');
 
             //$tpl->assign('facebook', 'Access token: ' . $user['fb_access_token']);
 
@@ -55,7 +61,7 @@
         }
 
         if($user['twitter_uid']){
-            $tpl->assign('twitterstatus', '<span style="color:green;">Authenticated</span>');
+            $tpl->assign('twitterstatus', '<span style="color:green;" class="authd"">Authenticated</span>');
 
             $tpl->assign('twitter', ' <input type="checkbox" id="facebookPublish" value="doPublish" checked/> Share my check-ins on Twitter');
             //$tpl->assign('twitter', '<a href="ajax/twitterpost.php" class="button">Tweet</a>');

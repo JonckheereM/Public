@@ -267,9 +267,16 @@ a.button {
   background-color: #f6eee4;
 }
 
+#quick-menu #subnavigation{
+    margin-left:40px;
+}
+
 #quick-menu #subnavigation li{
     float:left;
-    margin-right:10px;
+    margin-right:16px;
+    margin-top:10px;
+    font-size:14px;
+    
 }
 
 #quick-menu #subnavigation .active{
@@ -505,4 +512,103 @@ table.pageme td {
 ul.paging  li.sticky {
 	background-color: red !important;
 	display: block !important
+}
+
+/*dashboard*/
+
+.authd{
+    margin-left:26px;
+}
+
+#dashAccounts{
+    float:left;
+    margin-left:40px;
+    width: 600px;
+    margin-bottom: 20px;
+}
+
+#dashAccounts .fb{
+    float:left;
+    width:300px;
+}
+
+#dashAccounts .twitter{
+    float:left;
+    width:200px;
+}
+
+#dashAccounts h3{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+#dashSettings h3{
+
+    margin-bottom:20px;
+}
+
+#dashSettings{
+    background-color: whiteSmoke;
+    width:200px;
+    float:right;
+    padding: 20px;
+    margin-right:60px;
+    margin-top:20px;
+    height:200px;
+}
+
+#dashPrivacy{
+    margin-left:40px;
+    float:left;
+    width:260px;
+}
+
+#dashPrivacy h3{
+    margin-bottom:20px;
+}
+
+#dashEmail{
+    margin-left:40px;
+    float:left;
+    
+}
+
+#dashEmail h3{
+    margin-bottom:20px;
+}
+
+/*History*/
+.dualLeft{
+    float:left;
+}
+
+.dualRight{
+    float:right;
+}
+
+#content #recent-activityDual {
+  margin-left:40px;
+  float: left;
+  width: 860px;
+  margin-right: 100px;
+  min-height: 500px;
+}
+
+#content #recent-activityDual .activity {
+  margin-top: 8px;
+  min-height: 50px;
+  border-bottom: 1px dotted #7e7770;
+}
+
+#content #recent-activityDual .activity img {
+  float: left;
+  margin-right: 15px;
+}
+
+#dashUser{
+    float:right;
+    background-color: whiteSmoke;
+    padding:20px;
+    margin-top:10px;
+    margin-right:60px;
 }

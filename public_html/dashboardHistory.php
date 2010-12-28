@@ -18,24 +18,14 @@
         $tpl->assign('oNavMe', true);
 
         $uid = SpoonSession::get('public_uid');
-        $db = new SpoonDatabase('mysql', 'localhost', 'xqdchsmn_public', 'pRAcHU8Ajath7qa3', 'xqdchsmn_public');
-        $user = $db->getRecord('SELECT * FROM users WHERE user_id = ?', $uid);
-
-         $tpl->assign('uname', $user['username']);
-         $tpl->assign('fbu', $user['fb_uid']);
-
-         $lastChecking = $db->getRecord('SELECT * FROM checkins WHERE user_id = ? ORDER BY timestamp DESC', $uid);
-         $lastPub = $db->getRecord('SELECT * FROM pubs WHERE pub_id = ?', $lastChecking['pub_id']);
-
-         $tpl->assign('lastPub', $lastPub['name']);
-         $tpl->assign('lastPubId', $lastPub['pub_id']);
-         $tpl->assign('lastDate', SpoonDate::getTimeAgo(strtotime($lastChecking['timestamp'])));
+       
 
          /*code max*/
-         $recentDrinks = PublicApp::getRecentUserDrinks(10);
-        $recentCheckins = PublicApp::getRecentUserCheckins(10);
 
-        $recent = array_merge($recentDrinks, $recentCheckins);
+        $recentDrinks = PublicApp::getRecentUserDrinks($uid);
+        $recent = PublicApp::getRecentUserCheckins($uid);
+
+        //$recent = array_merge($recentDrinks, $recentCheckins);
 
         function compare_time($a, $b) {
             return strnatcmp($b['timestamp'], $a['timestamp']);
@@ -59,9 +49,28 @@
             }
         }
 
+        usort($recentDrinks, 'compare_time');
+        $test = array();
+        for ($i = 0; $i<100 ; $i++){
+            if($recentDrinks[$i] !== null)$test[] = $recentDrinks[$i];
+        }
+
+        $recentDrinks = $test;
+
+        for ($i = 0; $i < sizeof($recentDrinks); $i++) {
+            $recentDrinks[$i]['timestamp'] = SpoonDate::getTimeAgo(strtotime($recentDrinks[$i]['timestamp']));
+
+            //check if the user has a fb account authenticated
+            if(!$recentDrinks[$i]['fb_uid']){
+                //else, use standard fb icon
+                $recentDrinks[$i]['fb_uid'] = 1;
+            }
+        }
+
         if ($recent !== null) {
             //$tpl->assign('oRecent', true);
             $tpl->assign('iRecent', $recent);
+             $tpl->assign('iRecentt', $recentDrinks);
         }
         //else
             //$tpl->assign('oNoRecent', true);
