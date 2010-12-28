@@ -5,6 +5,9 @@ date_default_timezone_set('Europe/Berlin');
 // set include path
 ini_set("include_path", ".:../library/");
 
+require_once('mobiledevicedetect/mobile_device_detect.php');
+mobile_device_detect(true,true,true,true,true,true,true,'http://m.publicapp.tk',false);
+
 // required classes
 require_once 'spoon/spoon.php';
 require_once 'publicApp/publicApp.php';
